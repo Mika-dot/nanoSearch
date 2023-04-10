@@ -1,0 +1,70 @@
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe.config
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.pdb
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.dll
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.dll
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.pdb
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.xml
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.pdb
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.xml
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.pdb
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.xml
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.AssemblyReference.cache
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.SuggestedBindingRedirects.cache
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.Properties.Resources.resources
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.SharpGLForm.resources
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.GenerateResource.cache
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CoreCompileInputs.cache
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CopyComplete
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.exe
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.pdb
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\TrushinVlad\Desktop\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe.config
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.pdb
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.dll
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.dll
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.pdb
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.xml
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.pdb
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.xml
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.pdb
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.xml
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.AssemblyReference.cache
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.SuggestedBindingRedirects.cache
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.Properties.Resources.resources
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.SharpGLForm.resources
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.GenerateResource.cache
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CoreCompileInputs.cache
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CopyComplete
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.exe
+C:\Users\akimp\Downloads\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe.config
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.exe
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\OpenGL_lesson_CSharp.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.dll
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.dll
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.xml
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.SceneGraph.xml
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\bin\Debug\SharpGL.WinForms.xml
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.AssemblyReference.cache
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.SuggestedBindingRedirects.cache
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.Properties.Resources.resources
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.SharpGLForm.resources
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.GenerateResource.cache
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CoreCompileInputs.cache
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.csproj.CopyComplete
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.exe
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\Cad-OpenGL\OpenGL_lesson_CSharp\obj\x86\Debug\OpenGL_lesson_CSharp.Form1.resources
