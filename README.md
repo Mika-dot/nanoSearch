@@ -3,3 +3,5 @@ A system for finding the optimal path in the area for the construction of long-d
 
 
 ![Picture1](https://github.com/Mika-dot/nanoSearch/blob/Prototype-V0/Media/1.png)
+![Picture1](https://github.com/Mika-dot/nanoSearch/blob/Prototype-V0/Media/43523435%D0%B524.png)
+![Picture1](https://github.com/Mika-dot/nanoSearch/blob/Prototype-V0/Media/res.png)
