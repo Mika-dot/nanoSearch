@@ -19,12 +19,28 @@ class agent
         get => configuration.Map;
         set => configuration.Map = value;
     }
-    public Point? AgentActions(Point position, Point historyPosition)
+    public (Point, bool[]) AgentActions(Point position, Point historyPosition)
     {
-        // длиный код
-        // следующего действия
-        // ход по сетки 16
-        return null;
+        gradient gr = new gradient();
+        Point offset;
+        int Best = -1;
+        bool[] Flags = null;
+        float BestF = float.MaxValue;
+        for (int i = 0; i < SquareGrid.DIRS.Length; i++)
+        {
+            offset = new Point(SquareGrid.DIRS[i].X, SquareGrid.DIRS[i].Y );
+            Point res = new Point(position.X + offset.X, position.Y + offset.Y);
+            (float value, bool[] flags) flres = gr.gradientDescent(position, res, historyPosition);
+            if (flres.value < BestF)
+            {
+                Best = i;
+                Flags = flres.flags;
+                BestF = flres.value;
+            }
+        }
+        offset = new Point(SquareGrid.DIRS[Best].X, SquareGrid.DIRS[Best].Y);
+        
+        return (new Point(position.X + offset.X, position.Y + offset.Y), Flags);
     }
 
 }

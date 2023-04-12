@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace agentAStar
 {
 
-    class SquareGrid
+    public class SquareGrid
     {
         // Примечания по реализации: для удобства я сделал поля публичными,
         // но в реальном проекте, возможно, стоит следовать стандартному
         // стилю и сделать их скрытыми.
 
-        public static readonly Point[] DIRS = new[]
-            {
+        public static Point[] DIRS = new[]
+        {
             new Point(-2, 2),
             new Point(-1, 2),
             new Point(0, 2),

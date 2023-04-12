@@ -1,4 +1,8 @@
-﻿using agentConfiguration;
+﻿using agentAStar;
+using agentCalculationFormula;
+using agentCoefficient;
+using agentConfiguration;
+using agentMathematics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,42 +14,59 @@ namespace agentGradient
 {
     class gradient : mathematics
     {
-        private float? gradientDescent(PointZ cordinat, Point historyPosition)
+        public (float, bool[]) gradientDescent(Point cordinatMy, Point cordinatYour, Point historyPosition)
         {
+            PointZ cordinat = new PointZ(cordinatMy, cordinatYour);
             // невебическая формула от 5*2 параметров
-            AStarSearch(cordinat.Your); // а-звезда от новой точки
-            Height(cordinat); // высота до новой точки 
-            Corner(cordinat); // угол вертикали
-            Length(cordinat); // длина
-            AngleOfRotation(historyPosition, cordinat); // угол поворота
-            return null; // допилить 
+            int aStarSearch = AStarSearch(cordinatYour); // а-звезда от новой точки
+            (int value, bool flag) height = Height(cordinat); // высота до новой точки 
+            ((float value, bool flag) complex, bool flag) corner = Corner(cordinat); // угол вертикали
+            (float value, bool flag) length = Length(cordinat); // длина
+            (float value, bool flag) angleOfRotation = AngleOfRotation(historyPosition, cordinat); // угол поворота
+
+            float flag =
+                FunctionEvaluation(aStarSearch, calculationFormula.AStarSearch) * coefficient.AStarSearch +
+                FunctionEvaluation(height.value , calculationFormula.Height) * coefficient.Height +
+                FunctionEvaluation(corner.complex.value, calculationFormula.Corner) * coefficient.Corner +
+                FunctionEvaluation(length.value, calculationFormula.Length) * coefficient.Length +
+                FunctionEvaluation(angleOfRotation.value, calculationFormula.AngleOfRotation) * coefficient.AngleOfRotation;
+
+            return (flag, new bool[] { height.flag, corner.complex.flag, corner.flag, length .flag, angleOfRotation.flag});
         }
 
 
-        private AStarSearch? AStarSearch(Point start)
+        private int AStarSearch(Point start)
         {
-            return new AStarSearch(configuration.grid, start, configuration.end);
+            List<Point> FinalPoints = new List<Point>();
+            AStarSearch startInstance = new AStarSearch(configuration.grid, start, configuration.end);
+            Point p = configuration.end;
+            while (p != start)
+            {
+                FinalPoints.Add(p);
+                p = startInstance.cameFrom[p];
+            }
+            FinalPoints.Add(p);
+            return FinalPoints.Count;
         }
 
-        private int Height(PointZ cordinat)
+        private (int, bool) Height(PointZ cordinat) // высота
         {
-            return (int)Range(configuration.AltitudeMin, configuration.AltitudeMax, configuration.Map[cordinat.My.X, cordinat.My.Y] - configuration.Map[cordinat.Your.X, cordinat.Your.Y]);
+            return Range(configuration.AltitudeMin, configuration.AltitudeMax, configuration.Map[cordinat.My.X, cordinat.My.Y] - configuration.Map[cordinat.Your.X, cordinat.Your.Y]);
         }
-        private float? Corner(PointZ cordinat)
+        private ((float, bool), bool) Corner(PointZ cordinat) // угол вертикали
         {
-            int? height = Height(cordinat);
-            if (!height.HasValue) return null;
-            return Range(configuration.CornerMin, configuration.CornerMax, Cos(cordinat, height.Value));
-        }
-
-        private float Length(PointZ cordinat)
-        {
-            return (float)Range(0, configuration.lengthMax, EuclideanDistance(cordinat));
+            (int value, bool flag) height = Height(cordinat);
+            return (Range(configuration.CornerMin, configuration.CornerMax, Cos(cordinat, height.value)), height.flag);
         }
 
-        public float AngleOfRotation(Point historyPosition, PointZ cordinat)
+        private (float, bool) Length(PointZ cordinat)
         {
-            return (float)Range(configuration.cornerMin, 0, AnglePoint(historyPosition, cordinat.My, cordinat.Your));
+            return Range(0, configuration.lengthMax, EuclideanDistance(cordinat));
+        }
+
+        public (float, bool) AngleOfRotation(Point historyPosition, PointZ cordinat)
+        {
+            return Range(configuration.cornerMin, 0, AnglePoint(historyPosition, cordinat.My, cordinat.Your));
         }
     }
 }

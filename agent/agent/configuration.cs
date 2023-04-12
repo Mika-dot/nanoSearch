@@ -1,4 +1,6 @@
-﻿using System;
+﻿using agentAStar;
+using agentMathematics;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -20,6 +22,14 @@ namespace agentConfiguration
         static public float cornerMin { get; set; } = 45;// минимальный угол
 
         static public Point end { get; set; } = new Point(80, 50);
+
+        static public int size { 
+            get { return size; } 
+            set {  
+                SquareGrid.DIRS = mathematics.Resize(value);
+                size = value;
+            } 
+        }
 
         static public SquareGrid? grid { get; set; } = new SquareGrid(Map.GetLength(0), Map.GetLength(0));
 
