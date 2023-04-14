@@ -146,8 +146,8 @@ namespace agentAStar
                 foreach (var next in graph.Neighbors(current))
                 {
                     double newCost = costSoFar[current]
-                        //+ graph.Cost(current, next);
                         + graph.Cost(next);
+                        //+ Math.Abs(configuration.Map[next.X, next.Y] - configuration.Map[current.X, current.Y]);
                     if (!costSoFar.ContainsKey(next)
                         || newCost < costSoFar[next])
                     {

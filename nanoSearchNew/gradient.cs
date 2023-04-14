@@ -18,38 +18,48 @@ namespace agentGradient
         {
             PointZ cordinat = new PointZ(cordinatMy, cordinatYour);
             // невебическая формула от 5*2 параметров
-            int aStarSearch = AStarSearch(cordinatYour); // а-звезда от новой точки
+            float aStarSearch = AStarSearch(cordinatYour); // а-звезда от новой точки
             (int value, bool flag) height = Height(cordinat); // высота до новой точки 
             ((float value, bool flag) complex, bool flag) corner = Corner(cordinat); // угол вертикали
             (float value, bool flag) length = Length(cordinat); // длина
             (float value, bool flag) angleOfRotation = AngleOfRotation(historyPosition, cordinat); // угол поворота
 
-            float grad =
-                FunctionEvaluation(aStarSearch, calculationFormula.AStarSearch) * coefficient.AStarSearch +
-                FunctionEvaluation(height.value , calculationFormula.Height) * coefficient.Height +
-                FunctionEvaluation(corner.complex.value, calculationFormula.Corner) * coefficient.Corner +
-                FunctionEvaluation(length.value, calculationFormula.Length) * coefficient.Length +
-                FunctionEvaluation(angleOfRotation.value, calculationFormula.AngleOfRotation) * coefficient.AngleOfRotation;
+
+            var fe1 = FunctionEvaluation(aStarSearch, calculationFormula.AStarSearch) * coefficient.AStarSearch;
+            var fe2 = FunctionEvaluation(height.value, calculationFormula.Height) * coefficient.Height;
+            var fe3 = FunctionEvaluation(corner.complex.value, calculationFormula.Corner) * coefficient.Corner;
+            var fe4 = FunctionEvaluation(length.value, calculationFormula.Length) * coefficient.Length;
+            var fe5 = FunctionEvaluation(angleOfRotation.value, calculationFormula.AngleOfRotation) * coefficient.AngleOfRotation;
+
+            float grad = fe1 + fe2 + fe3 + fe4 + fe5;
+            //    FunctionEvaluation(aStarSearch, calculationFormula.AStarSearch) * coefficient.AStarSearch +
+            //    FunctionEvaluation(height.value , calculationFormula.Height) * coefficient.Height +
+            //    FunctionEvaluation(corner.complex.value, calculationFormula.Corner) * coefficient.Corner +
+            //    FunctionEvaluation(length.value, calculationFormula.Length) * coefficient.Length +
+            //    FunctionEvaluation(angleOfRotation.value, calculationFormula.AngleOfRotation) * coefficient.AngleOfRotation;
 
             return (grad, new bool[] { height.flag, corner.complex.flag, corner.flag, length .flag, angleOfRotation.flag});
         }
 
 
-        private int AStarSearch(Point start)
+        private float AStarSearch(Point start)
         {
-            int count = 0;
-            //List<Point> FinalPoints = new List<Point>();
+            //int count = 0;
+            float result = 0;
+            List<Point> FinalPoints = new List<Point>();
             AStarSearch startInstance = new AStarSearch(configuration.grid, start, configuration.end);
             Point p = configuration.end;
             while (p != start)
             {
-                count++;
-                //FinalPoints.Add(p);
-                p = startInstance.cameFrom[p];
+                //count++;
+                FinalPoints.Add(p);
+                var pp = startInstance.cameFrom[p];
+                result += (float)agentAStar.AStarSearch.Heuristic(p, pp);
+                p = pp;
             }
-            count++;
-            //FinalPoints.Add(p);
-            return count;
+            //count++;
+            FinalPoints.Add(p);
+            return result;//count;
         }
 
         private (int, bool) Height(PointZ cordinat) // высота

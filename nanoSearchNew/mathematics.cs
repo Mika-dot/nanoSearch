@@ -40,8 +40,8 @@ namespace agentMathematics
             float lenghtC = MathF.Sqrt(MathF.Pow(c.X - a.X, 2) + MathF.Pow(c.Y - a.Y, 2));
 
             float calc = ((lenghtA * lenghtA) + (lenghtB * lenghtB) - (lenghtC * lenghtC)) / (2 * lenghtA * lenghtB);
-
-            return MathF.Acos(calc) * 180f / MathF.PI;
+            //if (float.IsNaN(calc)) return 180;
+            return (float.IsNaN(calc)) ? 180f : MathF.Acos(calc) * 180f / MathF.PI;
             //float x1 = a.X - b.X, x2 = c.X - b.X;
             //float y1 = a.Y - b.Y, y2 = c.Y - b.Y;
             //float d1 = MathF.Sqrt(x1 * x1 + y1 * y1);
@@ -143,7 +143,7 @@ namespace agentMathematics
             }
 
             //return Newton(value, method.GetLength(0), X, Y, step);
-            return value;//LagrangeInterpolation(X, Y, value);
+            return LagrangeInterpolation(X, Y, value);
         }
 
         public static Point[] Resize(int size)

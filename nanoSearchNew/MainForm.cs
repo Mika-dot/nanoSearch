@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using agentMathematics;
+using SharpGL.SceneGraph.Primitives;
 
 namespace nanoSearchNew
 {
@@ -12,7 +13,7 @@ namespace nanoSearchNew
     {
         #region "Данные"
         float AngleX = 0, AngleY = 0;
-        double POSX = 2, POSY = 0, POSZ = 0;
+        double POSX = 2, POSY = 5, POSZ = 10;
 
         const float Rad = 3.14f / 180f;
 
@@ -364,7 +365,7 @@ namespace nanoSearchNew
                     {
                         if (touch(polygon, new Point(X, Y)))
                         {
-                            points[X / SCALE, Y / SCALE] = (int)Math.Min(start.Z, end.Z);
+                            //points[X / SCALE, Y / SCALE] = (int)Math.Min(start.Z, end.Z);
                             if (!Writen) newPoints[X / SCALE, Y / SCALE] += Convert.ToInt32(textBox4.Text);
                         }
                     }
@@ -528,7 +529,7 @@ namespace nanoSearchNew
                 for (int i = 0; i < xC; i++)
                     for (int j = 0; j < zC; j++)
                     {
-                        int rgb = (int)(255f * newPoints[i, j] / max);
+                        int rgb = max == 0 ? 0 : (int)(255f * newPoints[i, j] / max);
                         newbp.SetPixel(i, j, Color.FromArgb(rgb, rgb, rgb));
                     }
 
@@ -538,35 +539,50 @@ namespace nanoSearchNew
                 agentCoefficient.coefficient.AngleOfRotation = 0;
                 agentCoefficient.coefficient.Corner = 0;
                 agentConfiguration.configuration.Size = 1;
-                var start = new Point(10, 40);
+                var start = new Point(4, 10);
                 var curr = start;
-                curr.Y--;
+                //curr.Y++;
                 var end = new Point(80, 50);
                 var agent = new agent(newPoints); // Создаём агента
                 FinalPoints.Clear();
                 FinalPoints.Add(start);
                 FinalPoints.Add(curr);
-                while (curr != end)
+                var grid = new agentAStar.SquareGrid(xC, zC);
+                while (curr != end)// || agentAStar.AStarSearch.Heuristic(curr, end) <= agentConfiguration.configuration.Size * 2
                 {
                     var res_here = agent.AgentActions(curr, start);
+
+                    var grid2 = new agentAStar.SquareGrid(xC, zC);
+                    var astar = new agentAStar.AStarSearch(grid2, res_here.Item1, end);
+
+                    var p = end;
+                    while (p != res_here.Item1)
+                    {
+                        newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
+                        FinalPoints.Add(p);
+                        p = astar.cameFrom[p];
+                    }
+                    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
+                    FinalPoints.Add(p);
+
                     start = curr; // Текущая стала предыдущей
                     curr = res_here.Item1; // В текущую записан результат
-                    newbp.SetPixel(curr.X, curr.Y, Color.FromArgb(255, 255, 255)); // Помечаем белым
-                    FinalPoints.Add(curr);
+                    newbp.SetPixel(curr.X, curr.Y, Color.FromArgb(255, 0, 0)); // Помечаем белым
+                    //FinalPoints.Add(curr);
                 }
 
-
-                //var grid = new SquareGrid(xC, zC);
-                //var astar = new AStarSearch(grid, start, end);
+                //start = new Point(4, 10);
+                //var grid = new agentAStar.SquareGrid(xC, zC);
+                //var astar = new agentAStar.AStarSearch(grid, start, end);
 
                 //var p = end;
                 //while (p != start)
                 //{
-                //    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 255, 255));
+                //    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
                 //    FinalPoints.Add(p);
                 //    p = astar.cameFrom[p];
                 //}
-                //newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 255, 255));
+                //newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
                 //FinalPoints.Add(p);
 
                 newbp.Save("res.png", System.Drawing.Imaging.ImageFormat.Png);
