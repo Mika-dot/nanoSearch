@@ -1,0 +1,12 @@
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\bin\Debug\net6.0\A-Star.deps.json
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\bin\Debug\net6.0\A-Star.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\bin\Debug\net6.0\A-Star.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.csproj.AssemblyReference.cache
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.AssemblyInfoInputs.cache
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.AssemblyInfo.cs
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.csproj.CoreCompileInputs.cache
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\refint\A-Star.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\A-Star.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\A-Star\obj\Debug\net6.0\ref\A-Star.dll

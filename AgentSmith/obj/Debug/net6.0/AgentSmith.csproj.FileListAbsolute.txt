@@ -1,0 +1,15 @@
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\bin\Debug\net6.0\AgentSmith.deps.json
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\bin\Debug\net6.0\AgentSmith.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\bin\Debug\net6.0\AgentSmith.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\bin\Debug\net6.0\A-Star.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\bin\Debug\net6.0\A-Star.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.csproj.AssemblyReference.cache
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.AssemblyInfoInputs.cache
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.AssemblyInfo.cs
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.csproj.CoreCompileInputs.cache
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.csproj.CopyComplete
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\refint\AgentSmith.dll
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\AgentSmith.pdb
+C:\Users\akimp\OneDrive\Рабочий стол\nanoSearch-Prototype-V1.1\AgentSmith\obj\Debug\net6.0\ref\AgentSmith.dll
