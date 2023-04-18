@@ -6,9 +6,13 @@ using System.Security.Cryptography;
 using Newtonsoft.Json;
 using agentMathematics;
 using SharpGL.SceneGraph.Primitives;
+using AgentSmith.Settings;
+using AgentSmith;
+
 
 namespace nanoSearchNew
 {
+
     public partial class MainForm : Form
     {
         #region "Данные"
@@ -533,34 +537,29 @@ namespace nanoSearchNew
                         newbp.SetPixel(i, j, Color.FromArgb(rgb, rgb, rgb));
                     }
 
-                agentCoefficient.coefficient.AStarSearch = 1;
-                agentCoefficient.coefficient.Height = 0;
-                agentCoefficient.coefficient.Length = 0;
-                agentCoefficient.coefficient.AngleOfRotation = 0;
-                agentCoefficient.coefficient.Corner = 0;
-                agentConfiguration.configuration.Size = 1;
+                Coefficient.AStarSearch = 1;
+                Coefficient.Height = 1;
+                Coefficient.Length = 0;
+                Coefficient.AngleOfRotation = 0;
+                Coefficient.Corner = 0;
+                Configuration.Size = 1;
                 var start = new Point(4, 10);
                 var curr = start;
                 //curr.Y++;
                 var end = new Point(80, 50);
-                var agent = new agent(newPoints); // Создаём агента
+                var agent = new Agent(newPoints); // Создаём агента
                 FinalPoints.Clear();
                 FinalPoints.Add(start);
                 FinalPoints.Add(curr);
-                var grid = new agentAStar.SquareGrid(xC, zC);
                 while (curr != end)// || agentAStar.AStarSearch.Heuristic(curr, end) <= agentConfiguration.configuration.Size * 2
                 {
                     var res_here = agent.AgentActions(curr, start);
-
-                    var grid2 = new agentAStar.SquareGrid(xC, zC);
-                    var astar = new agentAStar.AStarSearch(grid2, res_here.Item1, end);
-
+                    
                     var p = end;
                     while (p != res_here.Item1)
                     {
                         newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
                         FinalPoints.Add(p);
-                        p = astar.cameFrom[p];
                     }
                     newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
                     FinalPoints.Add(p);

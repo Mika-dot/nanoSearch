@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "nanoSearchNew/1.0.0": {
         "dependencies": {
+          "A-Star": "1.0.0",
+          "AgentSmith": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "SharpGL.WinForms": "3.1.1"
         },
@@ -69,6 +71,19 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.Win32.SystemEvents": "4.7.0"
+        }
+      },
+      "A-Star/1.0.0": {
+        "runtime": {
+          "A-Star.dll": {}
+        }
+      },
+      "AgentSmith/1.0.0": {
+        "dependencies": {
+          "A-Star": "1.0.0"
+        },
+        "runtime": {
+          "AgentSmith.dll": {}
         }
       }
     }
@@ -141,6 +156,16 @@
       "sha512": "sha512-v+XbyYHaZjDfn0ENmJEV1VYLgGgCTx1gnfOBcppowbpOAriglYgGCvFCPr2EEZyBvXlpxbEsTwkOlInl107ahA==",
       "path": "system.drawing.common/4.7.0",
       "hashPath": "system.drawing.common.4.7.0.nupkg.sha512"
+    },
+    "A-Star/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AgentSmith/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -9,8 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\akimp\.nuget\packages\sharpgl.winforms\3.1.1\contentFiles\any\netcoreapp3.1\SharpGL.ico" />
+    <Content Remove="C:\Users\akimp\.nuget\packages\sharpgl.winforms\3.1.1\contentFiles\any\netcoreapp3.1\SharpGL.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SharpGL.WinForms" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\A-Star\A-Star.csproj" />
+    <ProjectReference Include="..\AgentSmith\AgentSmith.csproj" />
   </ItemGroup>
 
 </Project>
