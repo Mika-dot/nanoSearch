@@ -546,28 +546,29 @@ namespace nanoSearchNew
                 var start = new Point(4, 10);
                 var curr = start;
                 //curr.Y++;
-                var end = new Point(80, 50);
+
+                Configuration.End = new Point(40, 20);// end = new Point(80, 50);
                 var agent = new Agent(newPoints); // Создаём агента
                 FinalPoints.Clear();
                 FinalPoints.Add(start);
                 FinalPoints.Add(curr);
-                while (curr != end)// || agentAStar.AStarSearch.Heuristic(curr, end) <= agentConfiguration.configuration.Size * 2
+                while (curr != Configuration.End)// || agentAStar.AStarSearch.Heuristic(curr, end) <= agentConfiguration.configuration.Size * 2
                 {
                     var res_here = agent.AgentActions(curr, start);
                     
-                    var p = end;
-                    while (p != res_here.Item1)
-                    {
-                        newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
-                        FinalPoints.Add(p);
-                    }
-                    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
-                    FinalPoints.Add(p);
+                    //var p = end;
+                    //while (p != res_here.Item1)
+                    //{
+                    //    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
+                    //    FinalPoints.Add(p);
+                    //}
+                    //newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
+                    //FinalPoints.Add(p);
 
                     start = curr; // Текущая стала предыдущей
                     curr = res_here.Item1; // В текущую записан результат
                     newbp.SetPixel(curr.X, curr.Y, Color.FromArgb(255, 0, 0)); // Помечаем белым
-                    //FinalPoints.Add(curr);
+                    FinalPoints.Add(curr);
                 }
 
                 //start = new Point(4, 10);
