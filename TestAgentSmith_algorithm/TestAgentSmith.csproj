@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>TestA_Star</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -11,13 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="NewFile1.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
       <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>4</VersionMinor>
+      <VersionMinor>0</VersionMinor>
       <VersionMajor>2</VersionMajor>
       <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
     </COMReference>
