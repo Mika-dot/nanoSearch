@@ -36,7 +36,7 @@ namespace AgentSmith
             return (float.IsNaN(calc)) ? 180f : MathF.Acos(calc) * 180f / MathF.PI;
         }
 
-        public float Cos(PointZ cordinat, int height)
+        public float Cos(PointZ cordinat, float height)
         {
             return (MathF.Atan(MathF.Abs(height) / EuclideanDistance(cordinat)) * 180f / MathF.PI);
         }

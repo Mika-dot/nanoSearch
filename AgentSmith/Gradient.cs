@@ -1,6 +1,7 @@
 ﻿using A_Star;
 using AgentSmith.Settings;
 using System.Drawing;
+using System.Reflection;
 
 namespace AgentSmith
 {
@@ -9,25 +10,70 @@ namespace AgentSmith
         public (float, bool[]) GradientDescent(Point cordinatMy, Point cordinatYour, Point historyPosition)
         {
             PointZ cordinat = new(cordinatMy, cordinatYour);
-            // невебическая формула от 5*2 параметров
-            float aStarSearch = AStarSearch(cordinatYour); // а-звезда от новой точки
-            (int value, bool flag) height = Height(cordinat); // высота до новой точки 
-            ((float value, bool flag) complex, bool flag) corner = Corner(cordinat); // угол вертикали
-            (float value, bool flag) length = Length(cordinat); // длина
-            (float value, bool flag) angleOfRotation = AngleOfRotation(historyPosition, cordinat); // угол поворота
 
-            float grad =
-                FunctionEvaluation(aStarSearch, calculationFormula.AStarSearch) * Coefficient.AStarSearch +
-                FunctionEvaluation(height.value, calculationFormula.Height) * Coefficient.Height +
-                FunctionEvaluation(corner.complex.value, calculationFormula.Corner) * Coefficient.Corner +
-                FunctionEvaluation(length.value, calculationFormula.Length) * Coefficient.Length +
-                FunctionEvaluation(angleOfRotation.value, calculationFormula.AngleOfRotation) * Coefficient.AngleOfRotation;
+            List<Tuple<float, bool>> aStarSearchList = new List<Tuple<float, bool>>();
 
-            return (grad, new bool[] { height.flag, corner.complex.flag, corner.flag, length.flag, angleOfRotation.flag });
+            switch (Coefficient.AStarSearch)
+            {
+                case 0:
+                    break;
+                default:
+                    (float value, bool flag) temp = AStarSearch(cordinatYour);
+                    aStarSearchList.Add(Tuple.Create(FunctionEvaluation(temp.value, calculationFormula.AStarSearch) * Coefficient.AStarSearch, temp.flag));
+                    break;
+            }
+
+            switch (Coefficient.Height)
+            {
+                case 0:
+                    break;
+                default:
+                    (float value, bool flag) temp = Height(cordinat);
+                    aStarSearchList.Add(Tuple.Create(FunctionEvaluation(temp.value, calculationFormula.Height) * Coefficient.Height, temp.flag));
+                    break;
+            }
+
+            switch (Coefficient.Corner)
+            {
+                case 0:
+                    break;
+                default:
+                    (float value, bool flag) temp = Corner(cordinat);
+                    aStarSearchList.Add(Tuple.Create(FunctionEvaluation(temp.value, calculationFormula.Corner) * Coefficient.Corner, temp.flag));
+                    break;
+            }
+
+            switch (Coefficient.Length)
+            {
+                case 0:
+                    break;
+                default:
+                    (float value, bool flag) temp = Length(cordinat);
+                    aStarSearchList.Add(Tuple.Create(FunctionEvaluation(temp.value, calculationFormula.Length) * Coefficient.Length, temp.flag));
+                    break;
+            }
+
+            switch (Coefficient.AngleOfRotation)
+            {
+                case 0:
+                    break;
+                default:
+                    (float value, bool flag) temp = AngleOfRotation(historyPosition, cordinat);
+                    aStarSearchList.Add(Tuple.Create(FunctionEvaluation(temp.value, calculationFormula.AngleOfRotation) * Coefficient.AngleOfRotation, temp.flag));
+                    break;
+            }
+
+            bool[] flag = new bool[aStarSearchList.Count];
+            float sum = aStarSearchList.Where(t => t.Item2).Aggregate(0f, (acc, t) => acc + t.Item1);
+            for (int i = 0; i < aStarSearchList.Count; i++) flag[i] = aStarSearchList[0].Item2;
+
+
+            return (sum, flag);
+
         }
 
 
-        private float AStarSearch(Point start)
+        private (float, bool) AStarSearch(Point start)
         {
             float result = 0;
             List<Point> FinalPoints = new List<Point>();
@@ -42,18 +88,18 @@ namespace AgentSmith
             }
 
             FinalPoints.Add(current);
-            return result;
-
+            return (result, false);
         }
 
-        private (int, bool) Height(PointZ cordinat) // высота
+        private (float, bool) Height(PointZ cordinat) // высота
         {
             return Range(Configuration.AltitudeMin, Configuration.AltitudeMax, Configuration.Map[cordinat.My.X, cordinat.My.Y] - Configuration.Map[cordinat.Your.X, cordinat.Your.Y]);
         }
-        private ((float, bool), bool) Corner(PointZ cordinat) // угол вертикали
+        private (float, bool) Corner(PointZ cordinat) // угол вертикали
         {
-            (int value, bool flag) height = Height(cordinat);
-            return (Range(Configuration.CornerHeightsMin, Configuration.CornerHeightsMax, Cos(cordinat, height.value)), height.flag);
+            (float value, bool flag) height = Height(cordinat);
+            return Range(Configuration.CornerHeightsMin, Configuration.CornerHeightsMax, Cos(cordinat, height.value));
+
         }
 
         private (float, bool) Length(PointZ cordinat)
@@ -61,7 +107,7 @@ namespace AgentSmith
             return Range(0, Configuration.LengthMax, EuclideanDistance(cordinat));
         }
 
-        public (float, bool) AngleOfRotation(Point historyPosition, PointZ cordinat)
+        private (float, bool) AngleOfRotation(Point historyPosition, PointZ cordinat)
         {
             return Range(Configuration.CornerMin, 0, AnglePoint(historyPosition, cordinat.My, cordinat.Your));
         }

@@ -8,11 +8,11 @@ namespace AgentSmith.Settings
 {
     static public class Coefficient
     {
-        static public float AStarSearch { get; set; } = 1;
-        static public float Height { get; set; } = 1;
-        static public float Corner { get; set; } = 1;
-        static public float Length { get; set; } = 1;
-        static public float AngleOfRotation { get; set; } = 1;
+        static public float AStarSearch { get; set; } = 0;
+        static public float Height { get; set; } = 0;
+        static public float Corner { get; set; } = 0;
+        static public float Length { get; set; } = 0;
+        static public float AngleOfRotation { get; set; } = 0;
 
     }
 }
