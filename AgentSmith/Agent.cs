@@ -2,7 +2,7 @@
 using A_Star.Core;
 using AgentSmith.Settings;
 using System.Drawing;
-
+using
 
 namespace AgentSmith
 {
@@ -21,11 +21,11 @@ namespace AgentSmith
         {
             Gradient gradient = new Gradient();
             int lengthMap = Configuration.Map.GetLength(0);
-            Task<Tuple>[]Johnson = new Task<Tuple>[Cof.DIRS.Length];
+            Task<TupleMy>[]Johnson = new Task<TupleMy>[Cof.DIRS.Length];
             for (int i = 0; i < Johnson.Length; i++)
             {
                 int n = i;
-                Johnson[n] = new Task<Tuple>(() => Tuples.Steve(position, n, lengthMap, gradient, historyPosition));
+                Johnson[n] = new Task<TupleMy>(() => Tuples.Steve(position, n, lengthMap, gradient, historyPosition));
                 Johnson[n].Start();
             }
 
@@ -36,7 +36,7 @@ namespace AgentSmith
             for (int i = 0; i < Johnson.Length; i++)
             {
                 var agents = Johnson[i];
-                Tuple result = agents.Result;
+                TupleMy result = agents.Result;
                 if (result.Value() < dot)
                 {
                     dot = result.Value();
