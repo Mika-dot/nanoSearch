@@ -18,7 +18,7 @@ namespace AgentSmith.Settings
 
         static public Point End { get; set; } = new Point(80, 50);
 
-        static private int size;
+        static private int size = 2;
         static public int Size
         {
             get => size;

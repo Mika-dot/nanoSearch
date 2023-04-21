@@ -36,26 +36,27 @@ namespace AgentSmith
         public (Point, bool[])? AgentActions(Point position, Point historyPosition)
         {
 
-            Type myClassCoefficient = typeof(Coefficient);
-            MethodInfo[] methods = myClassCoefficient.GetMethods(BindingFlags.Instance | BindingFlags.Public);
-            bool flag = true;
-            foreach (var method in methods)
-            {
-                if ((float)method.Invoke(null, null) == 0)
-                {
-                    continue;
-                }
-                flag = true; break;
-            }
-            if (flag) return null;
+            //Type myClassCoefficient = typeof(Coefficient);
+            //MethodInfo[] methods = myClassCoefficient.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+            //bool flag = true;
+            //foreach (var method in methods)
+            //{
+            //    if ((float)method.Invoke(0, null) == 0)
+            //    {
+            //        continue;
+            //    }
+            //    flag = true; break;
+            //}
+            //if (flag) return null;
 
             Gradient gradient = new Gradient();
             int lengthMap = Configuration.Map.GetLength(0);
             Task<TupleMy>[]Johnson = new Task<TupleMy>[Cof.DIRS.Length];
             for (int i = 0; i < Johnson.Length; i++)
             {
-                Johnson[i] = new Task<TupleMy>(() => Tuples.Steve(position, i, lengthMap, gradient, historyPosition));
-                Johnson[i].Start();
+                var n = i;
+                Johnson[n] = new Task<TupleMy>(() => Tuples.Steve(position, n, lengthMap, gradient, historyPosition));
+                Johnson[n].Start();
             }
 
             Task.WaitAll(Johnson);
@@ -64,13 +65,15 @@ namespace AgentSmith
             bool[] Flags = new bool[5];
 
             float dot = float.MaxValue;
-            foreach (var agents in Johnson)
+            for (int i = 0; i < Johnson.Length; i++)
             {
+                var agents = Johnson[i];
                 TupleMy result = agents.Result;
                 if (result.Value() < dot)
                 {
                     dot = result.Value();
                     Flags = result.Flags();
+                    Best = i;
                 }
                 result = null;
             }

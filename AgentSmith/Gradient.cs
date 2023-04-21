@@ -64,7 +64,7 @@ namespace AgentSmith
             }
 
             bool[] flag = new bool[aStarSearchList.Count];
-            float sum = aStarSearchList.Where(t => t.Item2).Aggregate(0f, (acc, t) => acc + t.Item1);
+            float sum = aStarSearchList.Sum(x => x.Item1);//.Where(t => t.Item2).Aggregate(0f, (acc, t) => acc + t.Item1);
             for (int i = 0; i < aStarSearchList.Count; i++) flag[i] = aStarSearchList[0].Item2;
 
 

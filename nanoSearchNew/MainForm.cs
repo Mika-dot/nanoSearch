@@ -8,6 +8,8 @@ using agentMathematics;
 using SharpGL.SceneGraph.Primitives;
 using AgentSmith.Settings;
 using AgentSmith;
+using DXFImport;
+using System.Reflection;
 
 
 namespace nanoSearchNew
@@ -74,6 +76,9 @@ namespace nanoSearchNew
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+            DXFImport.DXFConst.Everything();
+
             //LoadDATA();
             var bmp = new Bitmap("1.png", true);//Берем изображение шума из ресурсов
             xC = bmp.Width;
@@ -132,12 +137,30 @@ namespace nanoSearchNew
         }
         #endregion
 
+        Model stem;
         public MainForm()
         {
+            stem = new Model();
+            stem.LoadFromObj(new StreamReader("q.stl"));
+            stem.Transformation(0.01f, new Vector3(0, 0f, 0f), new Vector3(0, 0, 0), new float[] { 1f, 0, 0 });
             InitializeComponent();
         }
 
         #region "Отрисовка"
+        void stlOutputOBJ(OpenGL gl, Model model)
+        {
+
+            gl.Color(model.color[0], model.color[1], model.color[2]);
+            for (int i = 0; i < model.Vertexes.Count; i += 3)
+            {
+                gl.Begin(OpenGL.GL_TRIANGLES);
+                gl.Vertex(model.Vertexes[i + 0].X, model.Vertexes[i + 0].Y, model.Vertexes[i + 0].Z);
+                gl.Vertex(model.Vertexes[i + 1].X, model.Vertexes[i + 1].Y, model.Vertexes[i + 1].Z);
+                gl.Vertex(model.Vertexes[i + 2].X, model.Vertexes[i + 2].Y, model.Vertexes[i + 2].Z);
+                gl.Vertex(model.Vertexes[i + 2].X, model.Vertexes[i + 2].Y, model.Vertexes[i + 2].Z);
+                gl.End();
+            }
+        }
         private void openglControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
             //  Возьмём OpenGL объект
@@ -151,6 +174,8 @@ namespace nanoSearchNew
 
             // Сдвигаем перо вправо от центра и вглубь экрана, но уже дальше
             gl.Translate(0.0f, 0.0f, 0.0f);
+
+            stlOutputOBJ(gl, stem);
 
             // 1. Карта
             for (int x = 0; x < xC - 1; x++)
@@ -537,25 +562,20 @@ namespace nanoSearchNew
                         newbp.SetPixel(i, j, Color.FromArgb(rgb, rgb, rgb));
                     }
 
-                Coefficient.AStarSearch = 1;
-                Coefficient.Height = 1;
-                Coefficient.Length = 0;
-                Coefficient.AngleOfRotation = 0;
-                Coefficient.Corner = 0;
-                Configuration.Size = 1;
                 var start = new Point(4, 10);
                 var curr = start;
                 //curr.Y++;
-
+                Configuration.Size = 1;
                 Configuration.End = new Point(40, 20);// end = new Point(80, 50);
-                var agent = new Agent(newPoints); // Создаём агента
+                var agent = new Agent(newPoints, Configuration.End).Criterion(Agent.CriterionName.AStar); // Создаём агента
                 FinalPoints.Clear();
                 FinalPoints.Add(start);
                 FinalPoints.Add(curr);
+                int COUnter = 10;
                 while (curr != Configuration.End)// || agentAStar.AStarSearch.Heuristic(curr, end) <= agentConfiguration.configuration.Size * 2
                 {
                     var res_here = agent.AgentActions(curr, start);
-                    
+
                     //var p = end;
                     //while (p != res_here.Item1)
                     //{
@@ -564,9 +584,15 @@ namespace nanoSearchNew
                     //}
                     //newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
                     //FinalPoints.Add(p);
+                    COUnter--;
+                    if (COUnter == 0)
+                    {
+                        newbp.Save("res.png", System.Drawing.Imaging.ImageFormat.Png);
+                        COUnter = 10;
+                    }
 
                     start = curr; // Текущая стала предыдущей
-                    curr = res_here.Item1; // В текущую записан результат
+                    curr = res_here.Value.Item1; // В текущую записан результат
                     newbp.SetPixel(curr.X, curr.Y, Color.FromArgb(255, 0, 0)); // Помечаем белым
                     FinalPoints.Add(curr);
                 }

@@ -9,7 +9,7 @@ namespace AgentSmith
         {
             Point offset = new Point(Cof.DIRS[i].X, Cof.DIRS[i].Y);
             Point res = new(position.X + offset.X, position.Y + offset.Y);
-            if (res.X < 0 || res.Y < 0 || res.X >= lengthMap || res.Y >= lengthMap) ;
+            if (res.X < 0 || res.Y < 0 || res.X >= lengthMap || res.Y >= lengthMap) return new TupleMy(float.MaxValue, new bool[5]);
             (float value, bool[] flags) flres = gradient.GradientDescent(position, res, historyPosition);
 
             return new TupleMy(flres.value, flres.flags);
