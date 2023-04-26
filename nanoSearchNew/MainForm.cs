@@ -26,6 +26,8 @@ namespace nanoSearchNew
         public WorldStruct DATA;
         int xC = 0;//Количество точек по х
         int zC = 0;//Количество точек по y
+        int OffsetX = 0;
+        int OffsetY = 0;
         int[,] points;//массив высот, 
         public static int[,] newPoints;//массив высот,
         List<Point> FinalPoints = new List<Point>();
@@ -77,7 +79,9 @@ namespace nanoSearchNew
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-            DXFImport.DXFConst.Everything();
+            DXFImport.Importer.Everything();
+
+            LoadDATA("DATA 2.json");
 
             //LoadDATA();
             var bmp = new Bitmap("1.png", true);//Берем изображение шума из ресурсов
@@ -92,7 +96,6 @@ namespace nanoSearchNew
             OpenGL gl = openglControl1.OpenGL;
             //gl.Enable(OpenGL.GL_CULL_FACE);
             gl.Enable(OpenGL.GL_DEPTH_TEST);
-            LoadDATA();
 
             newPoints = new int[xC, zC];
             for (int i = 0; i < xC; i++)
@@ -100,10 +103,27 @@ namespace nanoSearchNew
                     newPoints[i, j] = 0;//points[i, j];
         }
 
-        public void LoadDATA()
+        public void LoadDATA(string f)
         {
-            if (!File.Exists("DATA.json")) SaveDATA();
-            DATA = JsonConvert.DeserializeObject<WorldStruct>(File.ReadAllText("DATA.json"));
+            if (!File.Exists(f)) SaveDATA(f);
+            DATA = JsonConvert.DeserializeObject<WorldStruct>(File.ReadAllText(f));
+
+            OffsetX = int.MaxValue;
+            OffsetY = int.MaxValue;
+            foreach (var pol in DATA.Polygons)
+            {
+                foreach (var v in pol.Points)
+                {
+                    if (OffsetX > v.X) OffsetX = (int)v.X;
+                    if (OffsetY > v.Y) OffsetY = (int)v.Y;
+                }
+            }
+
+            for (int i = 0; i < DATA.Polygons.Length; i++)
+            {
+                for (int j = 0; j < DATA.Polygons[i].Points.Length; j++)
+                    DATA.Polygons[i].Points[j] = new Vector2(DATA.Polygons[i].Points[j].X - OffsetX, DATA.Polygons[i].Points[j].Y - OffsetY);
+            }
             //for (int i = 0; i < DATA.RoadsSHCO.Length; i++)
             //{
             //    var start = DATA.RoadsSHCO[i].Start;
@@ -111,7 +131,7 @@ namespace nanoSearchNew
             //    MessageBox.Show(points[(int)start.X, (int)start.Y] + " " + points[(int)end.X, (int)end.Y]);
             //}
         }
-        public void SaveDATA()
+        public void SaveDATA(string f)
         {
             if (DATA.Houses == null) DATA.Houses = new House[1];
             if (DATA.RoadsSHCO == null) DATA.RoadsSHCO = new Road[1];
@@ -133,7 +153,7 @@ namespace nanoSearchNew
                 DATA.Polygons = new Polygon[1];
                 DATA.Polygons[0].Points = new Vector2[1];
             }
-            File.WriteAllText("DATA.json", JsonConvert.SerializeObject(DATA));
+            File.WriteAllText(f, JsonConvert.SerializeObject(DATA));
         }
         #endregion
 
@@ -147,17 +167,17 @@ namespace nanoSearchNew
         }
 
         #region "Отрисовка"
-        void stlOutputOBJ(OpenGL gl, Model model)
+        void stlOutputOBJ(OpenGL gl, Model model, params float[] coordinates)
         {
 
             gl.Color(model.color[0], model.color[1], model.color[2]);
             for (int i = 0; i < model.Vertexes.Count; i += 3)
             {
                 gl.Begin(OpenGL.GL_TRIANGLES);
-                gl.Vertex(model.Vertexes[i + 0].X, model.Vertexes[i + 0].Y, model.Vertexes[i + 0].Z);
-                gl.Vertex(model.Vertexes[i + 1].X, model.Vertexes[i + 1].Y, model.Vertexes[i + 1].Z);
-                gl.Vertex(model.Vertexes[i + 2].X, model.Vertexes[i + 2].Y, model.Vertexes[i + 2].Z);
-                gl.Vertex(model.Vertexes[i + 2].X, model.Vertexes[i + 2].Y, model.Vertexes[i + 2].Z);
+                gl.Vertex(model.Vertexes[i + 0].X + coordinates[0], model.Vertexes[i + 0].Y + coordinates[1], model.Vertexes[i + 0].Z + coordinates[2]);
+                gl.Vertex(model.Vertexes[i + 1].X + coordinates[0], model.Vertexes[i + 1].Y + coordinates[1], model.Vertexes[i + 1].Z + coordinates[2]);
+                gl.Vertex(model.Vertexes[i + 2].X + coordinates[0], model.Vertexes[i + 2].Y + coordinates[1], model.Vertexes[i + 2].Z + coordinates[2]);
+                gl.Vertex(model.Vertexes[i + 2].X + coordinates[0], model.Vertexes[i + 2].Y + coordinates[1], model.Vertexes[i + 2].Z + coordinates[2]);
                 gl.End();
             }
         }
@@ -175,10 +195,10 @@ namespace nanoSearchNew
             // Сдвигаем перо вправо от центра и вглубь экрана, но уже дальше
             gl.Translate(0.0f, 0.0f, 0.0f);
 
-            stlOutputOBJ(gl, stem);
+            stlOutputOBJ(gl, stem, 0, 0, 0);
 
             // 1. Карта
-            for (int x = 0; x < xC - 1; x++)
+            if (!b) for (int x = 0; x < xC - 1; x++)
             {
                 for (int z = 0; z < zC - 1; z++)
                 {
@@ -232,6 +252,8 @@ namespace nanoSearchNew
                     gl.Vertex(ps[v].X * SCALE, points[(int)ps[v].X, (int)ps[v].Y] + 1, ps[v].Y * SCALE);
                     gl.End();
 
+                    continue;
+
                     int x_min = (int)ps.Min(N => N.X);
                     int x_max = (int)ps.Max(N => N.X);
 
@@ -272,7 +294,7 @@ namespace nanoSearchNew
             }
 
             // 3. ЛЭПы
-            for (int i = 0; i < DATA.LEPs.Length; i++)
+            if (DATA.LEPs != null) for (int i = 0; i < DATA.LEPs.Length; i++)
             {
                 var lep = DATA.LEPs[i];
                 var h = lep.Height;
@@ -291,7 +313,7 @@ namespace nanoSearchNew
             }
 
             // 4. Домики
-            for (int i = 0; i < DATA.Houses.Length; i++)
+            if (DATA.Houses != null) for (int i = 0; i < DATA.Houses.Length; i++)
             {
                 var hous = DATA.Houses[i];
                 var ps = hous.Pos;
@@ -300,6 +322,9 @@ namespace nanoSearchNew
                 var dimensions = new float[] { sz.X, sz.Y, sz.Z };
                 // рисуем дом
                 HOUSE(gl, coordinates, dimensions, 1, hous.Angle);
+                stlOutputOBJ(gl, stem, coordinates);
+
+                    continue;
 
                 var pss = new Vector2[]
                 {
@@ -338,7 +363,7 @@ namespace nanoSearchNew
             }
 
             // SCALE. ГАЗы
-            for (int i = 0; i < DATA.GASs.Length; i++)
+            if (DATA.GASs != null) for (int i = 0; i < DATA.GASs.Length; i++)
             {
                 var lep = DATA.GASs[i];
                 var h = lep.Height;
@@ -357,7 +382,7 @@ namespace nanoSearchNew
             }
 
             // 6. Дороги шоссе
-            for (int i = 0; i < DATA.RoadsSHCO.Length; i++)
+            if (DATA.RoadsSHCO != null) for (int i = 0; i < DATA.RoadsSHCO.Length; i++)
             {
                 var road = DATA.RoadsSHCO[i];
                 var start = road.Start;
@@ -402,7 +427,7 @@ namespace nanoSearchNew
             }
 
             // 6. Дороги асфальт
-            for (int i = 0; i < DATA.RoadsASPHALT.Length; i++)
+            if (DATA.RoadsASPHALT != null) for (int i = 0; i < DATA.RoadsASPHALT.Length; i++)
             {
                 var road = DATA.RoadsASPHALT[i];
                 var start = road.Start;
@@ -450,7 +475,7 @@ namespace nanoSearchNew
             }
 
             // 6. Дороги грунт
-            for (int i = 0; i < DATA.RoadsGROUND.Length; i++)
+            if (DATA.RoadsGROUND != null) for (int i = 0; i < DATA.RoadsGROUND.Length; i++)
             {
                 var road = DATA.RoadsGROUND[i];
                 var start = road.Start;
@@ -498,7 +523,7 @@ namespace nanoSearchNew
             }
 
             // 7. Реки
-            for (int i = 0; i < DATA.Rivers.Length; i++)
+            if (DATA.Rivers != null) for (int i = 0; i < DATA.Rivers.Length; i++)
             {
                 var road = DATA.Rivers[i];
                 var start = road.Start;
@@ -549,6 +574,8 @@ namespace nanoSearchNew
 
             // Контроль полной отрисовки следующего изображения
             gl.Flush();
+
+            return;
 
             if (!Writen)
             {
