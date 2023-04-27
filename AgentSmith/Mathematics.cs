@@ -15,6 +15,13 @@ namespace AgentSmith
             }
         }
 
+        /// <summary>
+        /// Оценка границ цены шага
+        /// </summary>
+        /// <param name="min">Минимальные</param>
+        /// <param name="max">Максимальные</param>
+        /// <param name="value">Значения цены</param>
+        /// <returns>Значение и вошол ли он в границы</returns>
         public (float, bool) Range(float min, float max, float value)
         {
             if ((min < value) && (value < max)) return (value, false);
@@ -26,6 +33,13 @@ namespace AgentSmith
             return (value, true);
         }
 
+        /// <summary>
+        /// Угол между позициями 3 точками
+        /// </summary>
+        /// <param name="a">Первая позиция</param>
+        /// <param name="b">Вторая позиция</param>
+        /// <param name="c">Треться позиция</param>
+        /// <returns>Угол в градусах</returns>
         public float AnglePoint(Point a, Point b, Point c)
         {
             float lenghtA = MathF.Sqrt(MathF.Pow(b.X - a.X, 2) + MathF.Pow(b.Y - a.Y, 2));
@@ -36,10 +50,22 @@ namespace AgentSmith
             return (float.IsNaN(calc)) ? 180f : MathF.Acos(calc) * 180f / MathF.PI;
         }
 
+        /// <summary>
+        /// Угол между высотами
+        /// </summary>
+        /// <param name="cordinat">Две точка иследуемая</param>
+        /// <param name="height">Высота, разница</param>
+        /// <returns>Угол в градусах</returns>
         public float Cos(PointZ cordinat, float height)
         {
             return (MathF.Atan(MathF.Abs(height) / EuclideanDistance(cordinat)) * 180f / MathF.PI);
         }
+
+        /// <summary>
+        /// Растояния между 
+        /// </summary>
+        /// <param name="cordinat">Две точка иследуемая</param>
+        /// <returns>Растояния между точками</returns>
         public float EuclideanDistance(PointZ cordinat)
         {
             return MathF.Sqrt(MathF.Pow(cordinat.My.X - cordinat.Your.X, 2) + MathF.Pow(cordinat.My.Y - cordinat.Your.Y, 2));
@@ -78,6 +104,11 @@ namespace AgentSmith
             return LagrangeInterpolation(X, Y, value);
         }
 
+        /// <summary>
+        /// Изменения размеров ядра просмотра оценщика
+        /// </summary>
+        /// <param name="size">Размер</param>
+        /// <returns>Новые координаты точек и их количество</returns>
         public static Point[] Resize(int size)
         {
             Point[] points = new Point[size * 2 * 4];

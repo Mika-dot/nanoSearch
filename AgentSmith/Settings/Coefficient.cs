@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AgentSmith.Settings
 {
+    /// <summary>
+    /// Кофиценты значимости
+    /// </summary>
     static public class Coefficient
     {
         static public float AStarSearch { get; set; } = 0;

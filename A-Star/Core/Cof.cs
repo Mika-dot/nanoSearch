@@ -4,6 +4,9 @@ namespace A_Star.Core
 {
     public static class Cof
     {
+        /// <summary>
+        /// Ядро просмотра (оценки) позиций вокруг
+        /// </summary>
         public static Point[] DIRS = new[]
         {
             new Point(-2, 2),

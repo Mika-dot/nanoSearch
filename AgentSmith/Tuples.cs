@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace AgentSmith
 {
+    /// <summary>
+    /// Агент оценки хода точки (поиск лучшего направления из данной точки)
+    /// </summary>
     public class Tuples
     {
         public static TupleMy Steve(Point position, int i, int lengthMap, Gradient gradient, Point historyPosition)
@@ -15,6 +18,10 @@ namespace AgentSmith
             return new TupleMy(flres.value, flres.flags);
         }
     }
+
+    /// <summary>
+    /// Возвращаемый тип из таска. Значение клетки и массив нарушений у фильтров
+    /// </summary>
     public class TupleMy
     {
         float value { get; set; }
@@ -35,6 +42,5 @@ namespace AgentSmith
         }
 
         ~TupleMy() { }
-
     }
 }

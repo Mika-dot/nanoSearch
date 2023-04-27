@@ -9,8 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Calculator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="C:\Users\akimp\.nuget\packages\sharpgl.winforms\3.1.1\contentFiles\any\netcoreapp3.1\SharpGL.ico" />
     <Content Remove="C:\Users\akimp\.nuget\packages\sharpgl.winforms\3.1.1\contentFiles\any\netcoreapp3.1\SharpGL.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Datas,cs" />
+    <None Remove="NewFile1.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\A-Star\A-Star.csproj" />
     <ProjectReference Include="..\AgentSmith\AgentSmith.csproj" />
+    <ProjectReference Include="..\netDxf-master\netDxf\netDxf.csproj" />
   </ItemGroup>
 
 </Project>

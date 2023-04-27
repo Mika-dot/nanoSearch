@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AgentSmith.Settings
 {
+    /// <summary>
+    /// Значения для нютоновсой ценки 
+    /// </summary>
     static public class calculationFormula // Нютон
     {
         static public float[,] AStarSearch { get; set; } = null;

@@ -2,6 +2,9 @@
 
 namespace A_Star
 {
+    /// <summary>
+    /// Алгоритм оценки пути по всей карте
+    /// </summary>
     public class AStar
     {
         public Dictionary<Point, Point> cameFrom
@@ -16,6 +19,13 @@ namespace A_Star
             return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
         }
 
+        /// <summary>
+        /// Оценка пути по всей карте
+        /// </summary>
+        /// <param name="graph">Размеры иследуемой облости</param>
+        /// <param name="start">Стартовая позиция</param>
+        /// <param name="goal">Финишная позиция</param>
+        /// <param name="Map">Цена карты в графе</param>
         public AStar(SquareGrid graph, Point start, Point goal, ref int[,] Map)
         {
             var frontier = new PriorityQueue<Point>();

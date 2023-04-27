@@ -38,8 +38,8 @@ namespace DXFImport
             //(dxf.Entities.Hatches.ElementAt(0).BoundaryPaths.ElementAt(0).Entities.ElementAt(0) as Polyline2D).Vertexes//.Edges.ElementAt(0).
             var c = found.Count();
             //MessageBox.Show(c.ToString());
-            var DATA2 = new nanoSearchNew.MainForm.WorldStruct();
-            DATA2.Polygons = new nanoSearchNew.MainForm.Polygon[c];
+            var DATA2 = new nanoSearchNew.Datas.WorldStruct();
+            DATA2.Polygons = new nanoSearchNew.Datas.Polygon[c];
             int cc = 0;
             foreach (var o in found)
             {

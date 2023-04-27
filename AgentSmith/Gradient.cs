@@ -7,6 +7,13 @@ namespace AgentSmith
 {
     public class Gradient : Mathematics
     {
+        /// <summary>
+        /// Функция расчета стоимости клетки, орентируясь по фильтрам
+        /// </summary>
+        /// <param name="cordinatMy">Моя текущая позиция</param>
+        /// <param name="cordinatYour">Иследуемая координата</param>
+        /// <param name="historyPosition">Историческа или придыдущая координата</param>
+        /// <returns>Цена хода</returns>
         public (float, bool[]) GradientDescent(Point cordinatMy, Point cordinatYour, Point historyPosition)
         {
             PointZ cordinat = new(cordinatMy, cordinatYour);
@@ -72,7 +79,11 @@ namespace AgentSmith
 
         }
 
-
+        /// <summary>
+        /// Метод оценки пути
+        /// </summary>
+        /// <param name="start">Текущая позиция</param>
+        /// <returns>Цена пути и нарушает ли он критерии</returns>
         private (float, bool) AStarSearch(Point start)
         {
             float result = 0;
@@ -91,10 +102,21 @@ namespace AgentSmith
             return (result, false);
         }
 
+        /// <summary>
+        /// Метод оценки разницы высот
+        /// </summary>
+        /// <param name="cordinat">Текущая позиция</param>
+        /// <returns>Цена</returns>
         private (float, bool) Height(PointZ cordinat) // высота
         {
             return Range(Configuration.AltitudeMin, Configuration.AltitudeMax, Configuration.Map[cordinat.My.X, cordinat.My.Y] - Configuration.Map[cordinat.Your.X, cordinat.Your.Y]);
         }
+
+        /// <summary>
+        /// Метод оценки угла вертикали
+        /// </summary>
+        /// <param name="cordinat">Текущая позиция</param>
+        /// <returns>Цена</returns>
         private (float, bool) Corner(PointZ cordinat) // угол вертикали
         {
             (float value, bool flag) height = Height(cordinat);
@@ -102,11 +124,22 @@ namespace AgentSmith
 
         }
 
+        /// <summary>
+        /// Метод оценки растояния до следующей точки
+        /// </summary>
+        /// <param name="cordinat">Текущая позиция</param>
+        /// <returns>Цена</returns>
         private (float, bool) Length(PointZ cordinat)
         {
             return Range(0, Configuration.LengthMax, EuclideanDistance(cordinat));
         }
 
+        /// <summary>
+        /// Метод оценки угла в плоскости
+        /// </summary>
+        /// <param name="historyPosition">Предыдущая кордината</param>
+        /// <param name="cordinat"></param>
+        /// <returns></returns>
         private (float, bool) AngleOfRotation(Point historyPosition, PointZ cordinat)
         {
             return Range(Configuration.CornerMin, 0, AnglePoint(historyPosition, cordinat.My, cordinat.Your));

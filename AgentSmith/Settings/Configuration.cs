@@ -4,6 +4,9 @@ using System.Drawing;
 
 namespace AgentSmith.Settings
 {
+    /// <summary>
+    /// Оценка пограничных значений
+    /// </summary>
     static public class Configuration
     {
         static public int AltitudeMin { get; set; } = -10;// выстора критерий
