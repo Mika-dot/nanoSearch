@@ -7,6 +7,7 @@ namespace A_Star.Core
         /// <summary>
         /// Ядро просмотра (оценки) позиций вокруг
         /// </summary>
+        [Obsolete]
         public static Point[] DIRS = new[]
         {
             new Point(-2, 2),
