@@ -11,14 +11,15 @@ namespace AgentSmith.Settings
     /// </summary>
     static public class calculationFormula // Нютон
     {
+        [Obsolete]
         static public float[,] AStarSearch { get; set; } = null;
-
+        [Obsolete]
         static public float[,] Height { get; set; } = null;
-
+        [Obsolete]
         static public float[,] Corner { get; set; } = null;
-
+        [Obsolete]
         static public float[,] Length { get; set; } = null;
-
+        [Obsolete]
         static public float[,] AngleOfRotation { get; set; } = null;
 
     }
