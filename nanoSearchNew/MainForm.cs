@@ -25,20 +25,45 @@ namespace nanoSearchNew
             gl.Enable(OpenGL.GL_DEPTH_TEST);
         }
 
-
-        Model stem = new Model();
+        Vector3 from_v2(ref Vector2 v, int z) => new Vector3(v.X, v.Y, z);
+        public static Model[] Houses;
+        public static Model[] LEPs;
+        public static Model[] GASs;
         public MainForm()
         {
             ImportExport.MainLoader();
-            //stem.LoadFromObj(new StreamReader(Link.Road)).Transformation(0.01f, new Vector3(0, 0f, 0f), new Vector3(0, 0, 0), new float[] { 1f, 0, 0 });
-            //stem.LoadFromObj(new StreamReader(Link.House)).Transformation(0.01f, new Vector3(0, 0f, 0f), new Vector3(0, 0, 0), new float[] { 1f, 0, 0 });
-            stem.LoadFromObj(new StreamReader(Link.House)).Transformation(0.01f, new Vector3(0, 0f, 0f), new Vector3(0, 0, 0), new float[] { 1f, 0, 0 });
-            
+
+            Houses = new Model[MapCalculator.MapHelper.DATA.Houses?.Length ?? 0];
+            for (int i = 0; i < Houses.Length; i++)
+            {
+                var POS = MapCalculator.MapHelper.DATA.Houses[i].Pos;
+                Houses[i].LoadFromObj(new StreamReader(Link.House))
+                    .Transformation(0.01f, new Vector3(0, 0f, 0f),
+                    from_v2(ref POS, MapCalculator.MapHelper.points[(int)POS.X, (int)POS.Y]),
+                    new float[] { 1f, 0, 0 });
+            }
+
+            LEPs = new Model[MapCalculator.MapHelper.DATA.LEPs?.Length ?? 0];
+            if (LEPs.Length > 0) Load(ref MapCalculator.MapHelper.DATA.LEPs, Link.PowerLines, ref LEPs);
+            GASs = new Model[MapCalculator.MapHelper.DATA.GASs?.Length ?? 0];
+            if (GASs.Length > 0) Load(ref MapCalculator.MapHelper.DATA.GASs, Link.GasPipes, ref GASs);
+
+            void Load(ref Datas.LEP[] from_where, string fromwhere, ref Model[] where)
+            {
+                for (int i = 0; i < from_where.Length; i++)
+                {
+                    var POS = from_where[i].Pos;
+                    where[i].LoadFromObj(new StreamReader(fromwhere))
+                        .Transformation(0.01f, new Vector3(0, 0f, 0f),
+                        from_v2(ref POS, MapCalculator.MapHelper.points[(int)POS.X, (int)POS.Y]),
+                        new float[] { 1f, 0, 0 });
+                }
+            }
+
             InitializeComponent();
 
-            MapCalculator.MapHelper.CalculateEverything(); // задаем дл€ ньюпоинтс значени€
 
-            MapCalculator.MapHelper.CalculatePathOnMap(); // с готовыми данными ищем путь
+            MapCalculator.MapHelper.CalculatePathOnMap(new Point(0, 150), new Point(120, 40)); // с готовыми данными ищем путь
         }
 
         #region "ќтрисовка"

@@ -34,7 +34,7 @@ namespace nanoSearchNew
                     points[i, j] = (int)(bmp.GetPixel(i, j).GetBrightness() * maxHeightMap);//Генерируем карту высот по яркости пикселем
                 }
 
-            MapCalculator.MapHelper.CalculateEverything();
+            CalculateEverything();
         }
 
         public static void LoadDATA(string f)
@@ -50,6 +50,9 @@ namespace nanoSearchNew
                 {
                     if (OffsetX > v.X) OffsetX = (int)v.X;
                     if (OffsetY > v.Y) OffsetY = (int)v.Y;
+
+                    if (MaxX < v.X) MaxX = (int)v.X;
+                    if (MaxY < v.Y) MaxY = (int)v.Y;
                 }
             }
 
@@ -58,12 +61,6 @@ namespace nanoSearchNew
                 for (int j = 0; j < DATA.Polygons[i].Points.Length; j++)
                     DATA.Polygons[i].Points[j] = new Vector2(DATA.Polygons[i].Points[j].X - OffsetX, DATA.Polygons[i].Points[j].Y - OffsetY);
             }
-            //for (int i = 0; i < DATA.RoadsSHCO.Length; i++)
-            //{
-            //    var start = DATA.RoadsSHCO[i].Start;
-            //    var end = DATA.RoadsSHCO[i].End;
-            //    MessageBox.Show(points[(int)start.X, (int)start.Y] + " " + points[(int)end.X, (int)end.Y]);
-            //}
         }
         public static void SaveDATA(string f)
         {

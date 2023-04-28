@@ -24,15 +24,14 @@ namespace MapCalculator
         public static int zC = 0;//Количество точек по y
         public static int OffsetX = 0;
         public static int OffsetY = 0;
+        public static int MaxX = 0;
+        public static int MaxY = 0;
         public static int[,] points;//массив высот, 
         public static int[,] newPoints;//массив высот,
         public static List<Point> FinalPoints = new List<Point>();
-        //public static bool Writen = false;
         public static int maxHeightMap = 100;//максимальная высота гор с 
-        //public static float[] dimensions = new float[3] { 3.9f, 3.9f, 3.9f };
 
-        public static int SCALE = 5;
-        public static int STEP = 6;
+        public static int SCALE = 1;
 
 
         public static void CalculateEverything()
@@ -281,9 +280,9 @@ namespace MapCalculator
         public static void JustRenderEverything(OpenGL gl)
         {
             // 1. Карта
-            if (!CameraMove.CameraUsed) for (int x = 0; x < xC - 1; x++)
+            if (!CameraMove.CameraUsed) for (int x = 0; x < MaxX - OffsetX - 1; x++)
                 {
-                    for (int z = 0; z < zC - 1; z++)
+                    for (int z = 0; z < MaxY - OffsetY - 1; z++)
                     {
                         var xZo = x * SCALE;
                         var zZo = z * SCALE;
@@ -374,6 +373,7 @@ namespace MapCalculator
                     var coordinates = new float[] { ps.X * SCALE, points[(int)ps.X, (int)ps.Y], ps.Y * SCALE };
                     var sz = hous.Size;
                     var dimensions = new float[] { sz.X, sz.Y, sz.Z };
+                    MainForm.Houses[i].StlOutputOBJ(gl);
                     // рисуем дом
                     //HOUSE(gl, coordinates, dimensions, 1, hous.Angle);
 
@@ -484,7 +484,7 @@ namespace MapCalculator
 
         }
     
-        public static void CalculatePathOnMap()
+        public static void CalculatePathOnMap(Point start, Point end)
         {
 
             var newbp = new Bitmap(xC, zC);
@@ -496,12 +496,11 @@ namespace MapCalculator
                     newbp.SetPixel(i, j, Color.FromArgb(rgb, rgb, rgb));
                 }
 
-            var start = new Point(0, 0);
             var curr = start;
             //curr.Y++;
             Configuration.Size = 1;
-            Configuration.End = new Point(100, 60);// end = new Point(80, 50);
-            var agent = new Agent(newPoints, Configuration.End).Criterion(Agent.CriterionName.AStar); // Создаём агента
+            //Configuration.End = end;// end = new Point(80, 50);
+            var agent = new Agent(newPoints, end).Criterion(Agent.CriterionName.AStar); // Создаём агента
             FinalPoints.Clear();
             FinalPoints.Add(start);
             FinalPoints.Add(curr);
@@ -546,9 +545,6 @@ namespace MapCalculator
             //FinalPoints.Add(p);
 
             newbp.Save(Link.Res, System.Drawing.Imaging.ImageFormat.Png);
-
-            //Form ifrm = new Form1();
-            //ifrm.Show();
         }
 
         public static void RenderPath(OpenGL gl)

@@ -13,7 +13,7 @@ namespace nanoSearchNew.ConstantMap
     {
         static public float HeightMap { get; set; } = 1f;
         static public Type[] Road { get; set; } = { new Type(1, 1f), new Type(2, 2f), new Type(3, 3f), new Type(4, 3f) };
-        static public Type[] Polygon { get; set; } = { new Type(1, 10), new Type(2, 20), new Type(3, 30) };
+        static public Type[] Polygon { get; set; } = { new Type(1, 5), new Type(2, 200), new Type(3, 30) };
         static public Type[] Home { get; set; } = { new Type(1, 1f), new Type(2, 2f), new Type(3, 3f) };
         static public Type[] ElectroTowers { get; set; } = { new Type(1, 1f), new Type(2, 2f), new Type(3, 3f) };
         static public Type[] Gas { get; set; } = { new Type(1, 1f), new Type(2, 2f), new Type(3, 3f) };

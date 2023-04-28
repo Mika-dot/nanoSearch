@@ -24,6 +24,7 @@ using Vector2 = netDxf.Vector2;
 using Vector3 = netDxf.Vector3;
 using Newtonsoft.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using nanoSearchNew.ConstantMap;
 
 namespace DXFImport
 {
@@ -32,81 +33,66 @@ namespace DXFImport
 
         public static void Everything()
         {
-            DxfDocument dxf = DxfDocument.Load("Трасса_Автодороги3.dxf", new List<string> { @".\Support" });
+            DxfDocument dxf = DxfDocument.Load(Link.DXFFile, new List<string> { @".\Support" });
             var l = dxf.Layers["ИИ_Растительность"];
             var found = dxf.Entities.All.Where(x => x.Layer == l);
-            //(dxf.Entities.Hatches.ElementAt(0).BoundaryPaths.ElementAt(0).Entities.ElementAt(0) as Polyline2D).Vertexes//.Edges.ElementAt(0).
-            var c = found.Count();
+
+            var l2 = dxf.Layers["ИИ_Границы_землепользования"];
+            var found2 = dxf.Entities.All.Where(x => x.Layer == l2);
+
+            var c = found.Count() + found2.Count();
             //MessageBox.Show(c.ToString());
             var DATA2 = new nanoSearchNew.Datas.WorldStruct();
-            DATA2.Polygons = new nanoSearchNew.Datas.Polygon[c];
-            int cc = 0;
-            foreach (var o in found)
+            //DATA2.Polygons = new nanoSearchNew.Datas.Polygon[c];
+            List<nanoSearchNew.Datas.Polygon> pols = new();
+            //int cc = 0;
+            void load_to_polys(ref IEnumerable<EntityObject> what, int type)
             {
-                if (o.Type == EntityType.Hatch)
+                foreach (var o in what)
                 {
-                    var hatch = (o as Hatch);
-                    var paths = hatch.BoundaryPaths.SelectMany(x => x.Entities.SelectMany(y => (y as Polyline2D).Vertexes)).ToArray();
-                    if (paths.Length > 0)
+                    if (o.Type == EntityType.Hatch || o.Type == EntityType.Polyline2D)
                     {
-                        List<System.Numerics.Vector2> poses_loc = new();
-                        int last = 0;
-                        poses_loc.Add(new System.Numerics.Vector2((int)(paths[0].Position.X / 100.0), (int)(paths[0].Position.Y / 100.0)));
-                        int i = 1;
-                        while (i < paths.Length)
+                        var hatch = (o as Hatch);
+                        var poly = (o as Polyline2D);
+                        var paths = o.Type == EntityType.Hatch ?
+                            hatch.BoundaryPaths.SelectMany(x => x.Entities.SelectMany(y => (y as Polyline2D).Vertexes)).ToArray()
+                            : poly.Vertexes.ToArray()
+                            ;
+                        if (paths.Length > 0)
                         {
-                            if (i % 2 == 0)//Vector2.Distance(paths[i].Position, paths[last].Position) > 200f)
+                            List<System.Numerics.Vector2> poses_loc = new();
+                            int last = 0;
+                            poses_loc.Add(new System.Numerics.Vector2((int)(paths[0].Position.X / 100.0), (int)(paths[0].Position.Y / 100.0)));
+                            int i = 1;
+                            while (i < paths.Length)
                             {
-                                poses_loc.Add(new System.Numerics.Vector2((int)(paths[i].Position.X / 100.0), (int)(paths[i].Position.Y / 100.0)));
-                                //last = i;
-                            }
-                            else
-                            {
+                                if (i % 2 == 0)//Vector2.Distance(paths[i].Position, paths[last].Position) > 200f)
+                                {
+                                    poses_loc.Add(new System.Numerics.Vector2((int)(paths[i].Position.X / 100.0), (int)(paths[i].Position.Y / 100.0)));
+                                    //last = i;
+                                }
+                                else
+                                {
 
+                                }
+                                i++;
                             }
-                            i++;
+                            //MessageBox.Show($"Hatch, {poses_loc.Count}");
+                            var pol = new nanoSearchNew.Datas.Polygon();
+                            pol.Type = (byte)type;
+                            pol.Points = poses_loc.Distinct().ToArray();
+                            pols.Add(pol);
                         }
-                        //MessageBox.Show($"Hatch, {poses_loc.Count}");
-
-                        DATA2.Polygons[cc].Points = poses_loc.Distinct().ToArray();
                     }
-                    cc++;
+                    else MessageBox.Show(o.Type.ToString());
+
                 }
-                //MessageBox.Show(
-
-                //    o.Type + ", " + o.CodeName + ", "
-                //    + string.Join(
-
-
-                //        ";\r\n==\r\n", o.XData.Select(
-
-                //            x => x.Key + ":\r\n" + string.Join(
-
-                //                "\r\n", x.Value.XDataRecord.Select(
-
-                //                    y => y.Code + " >> " + y.Value.ToString()
-
-                //                    )
-
-                //                )
-
-                //            )
-
-                //        )
-
-                //    );
-                //    MessageBox.Show($"{o.Name}; References count: {dxf.Layers.GetReferences(o).Count}");
-                //    if (o.Name == "ИИ_Растительность")
-                //    {
-                //        var objs = dxf.Layers.GetReferences(o);
-                //        foreach (var obj in objs)
-                //        {
-                //            obj.XData["ddf"].
-                //        }
-                //        objs[0].XData.Values.ElementAt(0).
-                //    }
-                //    //Debug.Assert(ReferenceEquals(o.Linetype, dxf.Linetypes[o.Linetype.Name]), "Object reference not equal.");
             }
+            load_to_polys(ref found, 0);
+            load_to_polys(ref found2, 1);
+            DATA2.Polygons = pols.ToArray();
+            
+            
             File.WriteAllText("DATA 2.json", JsonConvert.SerializeObject(DATA2, Formatting.Indented));
         }
     }
