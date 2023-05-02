@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\A-Star\A-Star.csproj" />
     <ProjectReference Include="..\AgentSmith\AgentSmith.csproj" />
+    <ProjectReference Include="..\Architect\Architect.csproj" />
     <ProjectReference Include="..\netDxf-master\netDxf\netDxf.csproj" />
   </ItemGroup>
 

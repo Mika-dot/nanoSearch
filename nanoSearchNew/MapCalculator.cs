@@ -27,7 +27,8 @@ namespace MapCalculator
         public static int MaxX = 0;
         public static int MaxY = 0;
         public static int[,] points;//массив высот, 
-        public static int[,] newPoints;//массив высот,
+        public static int?[,] newPoints;//массив высот,
+        public static HashSet<Point> ExcludedPoints = new HashSet<Point>();
         public static List<Point> FinalPoints = new List<Point>();
         public static int maxHeightMap = 100;//максимальная высота гор с 
 
@@ -36,7 +37,9 @@ namespace MapCalculator
 
         public static void CalculateEverything()
         {
-            newPoints = new int[xC, zC];
+            ExcludedPoints.Clear();
+
+            newPoints = new int?[xC, zC];
             for (int i = 0; i < xC; i++)
                 for (int j = 0; j < zC; j++)
                     newPoints[i, j] = 0;//points[i, j];
@@ -500,49 +503,27 @@ namespace MapCalculator
             //curr.Y++;
             Configuration.Size = 1;
             //Configuration.End = end;// end = new Point(80, 50);
-            var agent = new Agent(newPoints, end).Criterion(Agent.CriterionName.AStar); // Создаём агента
+            var agent = new Agent(newPoints, start, end).Criterion(Agent.CriterionName.AStar); // Создаём агента
             FinalPoints.Clear();
             FinalPoints.Add(start);
             FinalPoints.Add(curr);
             int COUnter = 10;
+
+
             while (curr != Configuration.End)// || agentAStar.AStarSearch.Heuristic(curr, end) <= agentConfiguration.configuration.Size * 2
             {
                 var res_here = agent.AgentActions(curr, start);
-
-                //var p = end;
-                //while (p != res_here.Item1)
-                //{
-                //    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
-                //    FinalPoints.Add(p);
-                //}
-                //newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
-                //FinalPoints.Add(p);
                 COUnter--;
                 if (COUnter == 0)
                 {
                     newbp.Save(Link.Res, System.Drawing.Imaging.ImageFormat.Png);
                     COUnter = 10;
                 }
-
                 start = curr; // Текущая стала предыдущей
                 curr = res_here.Value.Item1; // В текущую записан результат
                 newbp.SetPixel(curr.X, curr.Y, Color.FromArgb(255, 0, 0)); // Помечаем белым
                 FinalPoints.Add(curr);
             }
-
-            //start = new Point(4, 10);
-            //var grid = new agentAStar.SquareGrid(xC, zC);
-            //var astar = new agentAStar.AStarSearch(grid, start, end);
-
-            //var p = end;
-            //while (p != start)
-            //{
-            //    newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
-            //    FinalPoints.Add(p);
-            //    p = astar.cameFrom[p];
-            //}
-            //newbp.SetPixel(p.X, p.Y, Color.FromArgb(255, 0, 255));
-            //FinalPoints.Add(p);
 
             newbp.Save(Link.Res, System.Drawing.Imaging.ImageFormat.Png);
         }

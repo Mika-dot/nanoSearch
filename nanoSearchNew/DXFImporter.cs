@@ -23,7 +23,7 @@ using Trace = netDxf.Entities.Trace;
 using Vector2 = netDxf.Vector2;
 using Vector3 = netDxf.Vector3;
 using Newtonsoft.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 using nanoSearchNew.ConstantMap;
 
 namespace DXFImport

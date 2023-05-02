@@ -61,9 +61,89 @@ namespace nanoSearchNew
             }
 
             InitializeComponent();
+            button1.Click += delegate
+            {
+                Task.Run(() =>
+                {
+                    MapCalculator.MapHelper.CalculateEverything();
+                    MessageBox.Show(" арта отрисована.");
+                });
+            };
+            button2.Click += delegate
+            {
+                Task.Run(() =>
+                {
+                    MapCalculator.MapHelper.CalculatePathOnMap(new Point(0, 150), new Point(120, 40));
+                    MessageBox.Show("ѕуть построен.");
+                }); // с готовыми данными ищем путь
+            };
+
+            button3.Click += delegate
+            {
+                //Task.Run(() =>
+                //{
+                    var res = Architect.Recursion.Recursions(new Agent(MapCalculator.MapHelper.newPoints, new Point(0, 150), new Point(120, 40)).Criterion(Agent.CriterionName.AStar), 5);
+                    MapCalculator.MapHelper.FinalPoints = res[^1].Item1;
+                    MessageBox.Show("–екурсивный путь построен.");
+                //}); // с готовыми данными ищем путь
+            };
+            numKHeight.ValueChanged += delegate
+            {
+                ConstantGrid.HeightMap = (float)numKHeight.Value;
+            };
+            numPoly1.ValueChanged += delegate
+            {
+                ConstantGrid.Polygon[0].Value = (float)numPoly1.Value;
+            };
+            numPoly2.ValueChanged += delegate
+            {
+                ConstantGrid.Polygon[1].Value = (float)numPoly2.Value;
+            };
+            numericUpDown1.ValueChanged += delegate
+            {
+                ConstantGrid.Home[0].Value = (float)numericUpDown1.Value;
+            };
+
+            numericUpDown2.ValueChanged += delegate
+            {
+                ConstantGrid.Road[0].Value = (float)numericUpDown2.Value;
+            };
+            numericUpDown3.ValueChanged += delegate
+            {
+                ConstantGrid.Road[1].Value = (float)numericUpDown3.Value;
+            };
+            numericUpDown4.ValueChanged += delegate
+            {
+                ConstantGrid.Road[2].Value = (float)numericUpDown4.Value;
+            };
+            numericUpDown5.ValueChanged += delegate
+            {
+                ConstantGrid.Road[3].Value = (float)numericUpDown5.Value;
+            };
+
+            numericUpDown6.ValueChanged += delegate
+            {
+                Coefficient.AStarSearch = (float)numericUpDown6.Value;
+            };
+            numericUpDown7.ValueChanged += delegate
+            {
+                Coefficient.Height = (float)numericUpDown7.Value;
+            };
+            numericUpDown8.ValueChanged += delegate
+            {
+                Coefficient.Corner = (float)numericUpDown8.Value;
+            };
+            numericUpDown9.ValueChanged += delegate
+            {
+                Coefficient.Length = (float)numericUpDown9.Value;
+            };
+            numericUpDown10.ValueChanged += delegate
+            {
+                Coefficient.AngleOfRotation = (float)numericUpDown10.Value;
+            };
 
 
-            MapCalculator.MapHelper.CalculatePathOnMap(new Point(0, 150), new Point(120, 40)); // с готовыми данными ищем путь
+            //MapCalculator.MapHelper.CalculatePathOnMap(new Point(0, 150), new Point(120, 40)); // с готовыми данными ищем путь
         }
 
         #region "ќтрисовка"

@@ -30,13 +30,6 @@
         {
             openglControl1 = new SharpGL.OpenGLControl();
             button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -47,10 +40,43 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            numericUpDown10 = new NumericUpDown();
+            label12 = new Label();
+            numericUpDown9 = new NumericUpDown();
+            label11 = new Label();
+            numericUpDown8 = new NumericUpDown();
+            label10 = new Label();
+            numericUpDown7 = new NumericUpDown();
+            label9 = new Label();
+            numericUpDown6 = new NumericUpDown();
+            label8 = new Label();
+            button2 = new Button();
+            numericUpDown5 = new NumericUpDown();
+            numericUpDown4 = new NumericUpDown();
+            numericUpDown3 = new NumericUpDown();
+            numericUpDown2 = new NumericUpDown();
+            numericUpDown1 = new NumericUpDown();
+            numPoly2 = new NumericUpDown();
+            numPoly1 = new NumericUpDown();
+            numKHeight = new NumericUpDown();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)openglControl1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numPoly2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numPoly1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numKHeight).BeginInit();
             SuspendLayout();
             // 
             // openglControl1
@@ -80,74 +106,10 @@
             button1.Location = new Point(8, 9);
             button1.Margin = new Padding(5);
             button1.Name = "button1";
-            button1.Size = new Size(82, 37);
+            button1.Size = new Size(137, 37);
             button1.TabIndex = 1;
-            button1.Text = "Начало";
+            button1.Text = "Построить карту";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(129, 49);
-            textBox1.Margin = new Padding(5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(74, 27);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "1";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(129, 89);
-            textBox2.Margin = new Padding(5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(74, 27);
-            textBox2.TabIndex = 3;
-            textBox2.Text = "0";
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(129, 133);
-            textBox3.Margin = new Padding(5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(74, 27);
-            textBox3.TabIndex = 4;
-            textBox3.Text = "0";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(129, 169);
-            textBox4.Margin = new Padding(5);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(74, 27);
-            textBox4.TabIndex = 5;
-            textBox4.Text = "0";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(129, 204);
-            textBox5.Margin = new Padding(5);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(74, 27);
-            textBox5.TabIndex = 6;
-            textBox5.Text = "0";
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(129, 244);
-            textBox6.Margin = new Padding(5);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(74, 27);
-            textBox6.TabIndex = 10;
-            textBox6.Text = "0";
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(129, 277);
-            textBox7.Margin = new Padding(5);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(74, 27);
-            textBox7.TabIndex = 9;
-            textBox7.Text = "0";
             // 
             // label1
             // 
@@ -170,7 +132,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(11, 137);
+            label3.Location = new Point(11, 127);
             label3.Name = "label3";
             label3.Size = new Size(47, 20);
             label3.TabIndex = 13;
@@ -179,7 +141,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(11, 173);
+            label4.Location = new Point(11, 160);
             label4.Name = "label4";
             label4.Size = new Size(54, 20);
             label4.TabIndex = 14;
@@ -188,7 +150,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(11, 212);
+            label5.Location = new Point(11, 193);
             label5.Name = "label5";
             label5.Size = new Size(66, 20);
             label5.TabIndex = 15;
@@ -197,7 +159,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(15, 245);
+            label6.Location = new Point(15, 226);
             label6.Name = "label6";
             label6.Size = new Size(47, 20);
             label6.TabIndex = 16;
@@ -206,7 +168,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(15, 281);
+            label7.Location = new Point(17, 259);
             label7.Name = "label7";
             label7.Size = new Size(41, 20);
             label7.TabIndex = 17;
@@ -238,21 +200,34 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(button3);
+            tabPage2.Controls.Add(numericUpDown10);
+            tabPage2.Controls.Add(label12);
+            tabPage2.Controls.Add(numericUpDown9);
+            tabPage2.Controls.Add(label11);
+            tabPage2.Controls.Add(numericUpDown8);
+            tabPage2.Controls.Add(label10);
+            tabPage2.Controls.Add(numericUpDown7);
+            tabPage2.Controls.Add(label9);
+            tabPage2.Controls.Add(numericUpDown6);
+            tabPage2.Controls.Add(label8);
+            tabPage2.Controls.Add(button2);
+            tabPage2.Controls.Add(numericUpDown5);
+            tabPage2.Controls.Add(numericUpDown4);
+            tabPage2.Controls.Add(numericUpDown3);
+            tabPage2.Controls.Add(numericUpDown2);
+            tabPage2.Controls.Add(numericUpDown1);
+            tabPage2.Controls.Add(numPoly2);
+            tabPage2.Controls.Add(numPoly1);
+            tabPage2.Controls.Add(numKHeight);
             tabPage2.Controls.Add(button1);
             tabPage2.Controls.Add(label7);
-            tabPage2.Controls.Add(textBox1);
             tabPage2.Controls.Add(label6);
-            tabPage2.Controls.Add(textBox2);
             tabPage2.Controls.Add(label5);
-            tabPage2.Controls.Add(textBox3);
             tabPage2.Controls.Add(label4);
-            tabPage2.Controls.Add(textBox4);
             tabPage2.Controls.Add(label3);
-            tabPage2.Controls.Add(textBox5);
             tabPage2.Controls.Add(label2);
-            tabPage2.Controls.Add(textBox7);
             tabPage2.Controls.Add(label1);
-            tabPage2.Controls.Add(textBox6);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
@@ -261,6 +236,184 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Настройки";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown10
+            // 
+            numericUpDown10.DecimalPlaces = 2;
+            numericUpDown10.Location = new Point(573, 191);
+            numericUpDown10.Name = "numericUpDown10";
+            numericUpDown10.Size = new Size(108, 27);
+            numericUpDown10.TabIndex = 36;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(456, 193);
+            label12.Name = "label12";
+            label12.Size = new Size(84, 20);
+            label12.TabIndex = 35;
+            label12.Text = "Повороты:";
+            // 
+            // numericUpDown9
+            // 
+            numericUpDown9.DecimalPlaces = 2;
+            numericUpDown9.Location = new Point(573, 158);
+            numericUpDown9.Name = "numericUpDown9";
+            numericUpDown9.Size = new Size(108, 27);
+            numericUpDown9.TabIndex = 34;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(456, 160);
+            label11.Name = "label11";
+            label11.Size = new Size(59, 20);
+            label11.TabIndex = 33;
+            label11.Text = "Длины:";
+            // 
+            // numericUpDown8
+            // 
+            numericUpDown8.DecimalPlaces = 2;
+            numericUpDown8.Location = new Point(573, 125);
+            numericUpDown8.Name = "numericUpDown8";
+            numericUpDown8.Size = new Size(108, 27);
+            numericUpDown8.TabIndex = 32;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(456, 127);
+            label10.Name = "label10";
+            label10.Size = new Size(46, 20);
+            label10.TabIndex = 31;
+            label10.Text = "Углы:";
+            // 
+            // numericUpDown7
+            // 
+            numericUpDown7.DecimalPlaces = 2;
+            numericUpDown7.Location = new Point(573, 92);
+            numericUpDown7.Name = "numericUpDown7";
+            numericUpDown7.Size = new Size(108, 27);
+            numericUpDown7.TabIndex = 30;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(456, 94);
+            label9.Name = "label9";
+            label9.Size = new Size(65, 20);
+            label9.TabIndex = 29;
+            label9.Text = "Высоты:";
+            // 
+            // numericUpDown6
+            // 
+            numericUpDown6.DecimalPlaces = 2;
+            numericUpDown6.Location = new Point(573, 59);
+            numericUpDown6.Name = "numericUpDown6";
+            numericUpDown6.Size = new Size(108, 27);
+            numericUpDown6.TabIndex = 28;
+            numericUpDown6.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(456, 61);
+            label8.Name = "label8";
+            label8.Size = new Size(54, 20);
+            label8.TabIndex = 27;
+            label8.Text = "A-Star:";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(155, 9);
+            button2.Margin = new Padding(5);
+            button2.Name = "button2";
+            button2.Size = new Size(137, 37);
+            button2.TabIndex = 26;
+            button2.Text = "Построить путь";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown5
+            // 
+            numericUpDown5.DecimalPlaces = 2;
+            numericUpDown5.Location = new Point(125, 257);
+            numericUpDown5.Name = "numericUpDown5";
+            numericUpDown5.Size = new Size(108, 27);
+            numericUpDown5.TabIndex = 25;
+            numericUpDown5.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericUpDown4
+            // 
+            numericUpDown4.DecimalPlaces = 2;
+            numericUpDown4.Location = new Point(125, 224);
+            numericUpDown4.Name = "numericUpDown4";
+            numericUpDown4.Size = new Size(108, 27);
+            numericUpDown4.TabIndex = 24;
+            numericUpDown4.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericUpDown3
+            // 
+            numericUpDown3.DecimalPlaces = 2;
+            numericUpDown3.Location = new Point(125, 191);
+            numericUpDown3.Name = "numericUpDown3";
+            numericUpDown3.Size = new Size(108, 27);
+            numericUpDown3.TabIndex = 23;
+            numericUpDown3.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.DecimalPlaces = 2;
+            numericUpDown2.Location = new Point(125, 158);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(108, 27);
+            numericUpDown2.TabIndex = 22;
+            numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.DecimalPlaces = 2;
+            numericUpDown1.Location = new Point(125, 125);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(108, 27);
+            numericUpDown1.TabIndex = 21;
+            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numPoly2
+            // 
+            numPoly2.DecimalPlaces = 2;
+            numPoly2.Location = new Point(239, 92);
+            numPoly2.Name = "numPoly2";
+            numPoly2.Size = new Size(108, 27);
+            numPoly2.TabIndex = 20;
+            numPoly2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numPoly1
+            // 
+            numPoly1.DecimalPlaces = 2;
+            numPoly1.Location = new Point(125, 92);
+            numPoly1.Name = "numPoly1";
+            numPoly1.Size = new Size(108, 27);
+            numPoly1.TabIndex = 19;
+            numPoly1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // numKHeight
+            // 
+            numKHeight.DecimalPlaces = 2;
+            numKHeight.Location = new Point(125, 59);
+            numKHeight.Name = "numKHeight";
+            numKHeight.Size = new Size(108, 27);
+            numKHeight.TabIndex = 18;
+            numKHeight.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // button3
+            // 
+            button3.Location = new Point(302, 9);
+            button3.Margin = new Padding(5);
+            button3.Name = "button3";
+            button3.Size = new Size(137, 37);
+            button3.TabIndex = 37;
+            button3.Text = "Рекурсию";
+            button3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -276,6 +429,19 @@
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numPoly2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numPoly1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numKHeight).EndInit();
             ResumeLayout(false);
         }
 
@@ -283,13 +449,6 @@
 
         private SharpGL.OpenGLControl openglControl1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -300,5 +459,25 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private NumericUpDown numKHeight;
+        private NumericUpDown numPoly2;
+        private NumericUpDown numPoly1;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown2;
+        private NumericUpDown numericUpDown5;
+        private NumericUpDown numericUpDown4;
+        private NumericUpDown numericUpDown3;
+        private Button button2;
+        private NumericUpDown numericUpDown6;
+        private Label label8;
+        private NumericUpDown numericUpDown10;
+        private Label label12;
+        private NumericUpDown numericUpDown9;
+        private Label label11;
+        private NumericUpDown numericUpDown8;
+        private Label label10;
+        private NumericUpDown numericUpDown7;
+        private Label label9;
+        private Button button3;
     }
 }
