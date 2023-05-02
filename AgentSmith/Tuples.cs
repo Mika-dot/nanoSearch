@@ -1,4 +1,5 @@
 ﻿using A_Star.Core;
+using AgentSmith.Settings;
 using System.Drawing;
 
 namespace AgentSmith
@@ -8,11 +9,11 @@ namespace AgentSmith
     /// </summary>
     public class Tuples
     {
-        public static TupleMy Steve(Point position, int i, int lengthMap, Gradient gradient, Point historyPosition)
+        public static TupleMy AgentMorris(Point position, int i, int lengthMap, Gradient gradient, Point historyPosition)
         {
             Point offset = new Point(Cof.DIRS[i].X, Cof.DIRS[i].Y);
             Point res = new(position.X + offset.X, position.Y + offset.Y);
-            if (res.X < 0 || res.Y < 0 || res.X >= lengthMap || res.Y >= lengthMap) return new TupleMy(float.MaxValue, new bool[5]);
+            if (res.X < 0 || res.Y < 0 || res.X >= lengthMap || res.Y >= lengthMap || !Configuration.Map[res.X, res.Y].HasValue) return new TupleMy(float.MaxValue, new bool[5]);
             (float value, bool[] flags) flres = gradient.GradientDescent(position, res, historyPosition);
 
             return new TupleMy(flres.value, flres.flags);

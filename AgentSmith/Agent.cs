@@ -15,10 +15,11 @@ namespace AgentSmith
         /// </summary>
         /// <param name="Maps">Веса карты как массив</param>
         /// <param name="end">Точка финиша, куда будет стремиться алгоритм</param>
-        public Agent(int[,] Maps, Point end)
+        public Agent(int?[,] Maps, Point end, Point Start)
         {
             Configuration.Map = Maps;
             Configuration.End = end;
+            Configuration.Start = Start;
         }
 
         /// <summary>
@@ -54,14 +55,13 @@ namespace AgentSmith
         /// <returns></returns>
         public (Point, bool[])? AgentActions(Point position, Point historyPosition)
         {
-
             Gradient gradient = new Gradient();
             int lengthMap = Configuration.Map.GetLength(0);
             Task<TupleMy>[]Johnson = new Task<TupleMy>[Cof.DIRS.Length];
             for (int i = 0; i < Johnson.Length; i++)
             {
                 var n = i;
-                Johnson[n] = new Task<TupleMy>(() => Tuples.Steve(position, n, lengthMap, gradient, historyPosition));
+                Johnson[n] = new Task<TupleMy>(() => Tuples.AgentMorris(position, n, lengthMap, gradient, historyPosition));
                 Johnson[n].Start();
             }
 
@@ -84,6 +84,8 @@ namespace AgentSmith
                         break;
                 }
             }
+
+            if (Best == -1) return null;
 
             Point offset = new Point(Cof.DIRS[Best].X, Cof.DIRS[Best].Y);
 

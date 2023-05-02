@@ -28,6 +28,9 @@ namespace AgentSmith.Settings
         [Obsolete]
         static public Point End { get; set; } = new Point(80, 50);
 
+        [Obsolete]
+        static public Point Start { get; set; } = new Point(10, 10);
+
         static private int size = 2;
         static public int Size
         {
@@ -42,10 +45,10 @@ namespace AgentSmith.Settings
         [Obsolete]
         static internal SquareGrid? grid { get; set; }
 
-        static internal int[,] _map;
+        static internal int?[,] _map;
 
         [Obsolete]
-        static public int[,] Map
+        static public int?[,] Map
         {
             get => _map;
             set

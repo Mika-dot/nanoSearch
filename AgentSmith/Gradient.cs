@@ -16,6 +16,9 @@ namespace AgentSmith
         /// <returns>Цена хода</returns>
         public (float, bool[]) GradientDescent(Point cordinatMy, Point cordinatYour, Point historyPosition)
         {
+
+            //if (cordinatYour == null) { }
+
             PointZ cordinat = new(cordinatMy, cordinatYour);
 
             List<Tuple<float, bool>> aStarSearchList = new List<Tuple<float, bool>>();
@@ -109,7 +112,7 @@ namespace AgentSmith
         /// <returns>Цена</returns>
         private (float, bool) Height(PointZ cordinat) // высота
         {
-            return Range(Configuration.AltitudeMin, Configuration.AltitudeMax, Configuration.Map[cordinat.My.X, cordinat.My.Y] - Configuration.Map[cordinat.Your.X, cordinat.Your.Y]);
+            return Range(Configuration.AltitudeMin, Configuration.AltitudeMax, Configuration.Map[cordinat.My.X, cordinat.My.Y].Value - Configuration.Map[cordinat.Your.X, cordinat.Your.Y].Value);
         }
 
         /// <summary>
