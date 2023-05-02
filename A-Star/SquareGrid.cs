@@ -23,9 +23,9 @@ namespace A_Star
                 && 0 <= id.Y && id.Y < height;
         }
 
-        public double Cost(Point a, int[,] Map)
+        public double Cost(Point a, int?[,] Map)
         {
-            return Map[a.X, a.Y];//forests.Contains(a) ? 5 : 1;
+            return Map[a.X, a.Y].Value;//forests.Contains(a) ? 5 : 1;
         }
 
         public IEnumerable<Point> Neighbors(Point id)

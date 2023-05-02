@@ -26,7 +26,7 @@ namespace A_Star
         /// <param name="start">Стартовая позиция</param>
         /// <param name="goal">Финишная позиция</param>
         /// <param name="Map">Цена карты в графе</param>
-        public AStar(SquareGrid graph, Point start, Point goal, ref int[,] Map)
+        public AStar(SquareGrid graph, Point start, Point goal, ref int?[,] Map)
         {
             var frontier = new PriorityQueue<Point>();
             frontier.Enqueue(start, 0);
@@ -45,6 +45,7 @@ namespace A_Star
 
                 foreach (var next in graph.Neighbors(current))
                 {
+                    if (Map[next.X, next.Y] == null) continue;
                     double newCost = costSoFar[current]
                         + graph.Cost(next, Map);
                     //+ Math.Abs(configuration.Map[next.X, next.Y] - configuration.Map[current.X, current.Y]);
