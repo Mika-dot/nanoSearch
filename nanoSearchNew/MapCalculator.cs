@@ -290,6 +290,8 @@ namespace MapCalculator
                         var xZo = x * SCALE;
                         var zZo = z * SCALE;
 
+                        if (!newPoints[x, z].HasValue) continue;
+
                         gl.Begin(OpenGL.GL_TRIANGLES);
 
                         setColor(points[x, z], gl);

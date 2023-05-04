@@ -80,12 +80,20 @@ namespace nanoSearchNew
 
             button3.Click += delegate
             {
-                //Task.Run(() =>
-                //{
-                    var res = Architect.Recursion.Recursions(new Agent(MapCalculator.MapHelper.newPoints, new Point(0, 150), new Point(120, 40)).Criterion(Agent.CriterionName.AStar), 5);
+                Task.Run(() =>
+                {
+                    Configuration.Size = 1;
+                    var res = Architect.Recursion.Recursions(
+                        new Agent(MapCalculator.MapHelper.newPoints, new Point(0, 150), new Point(120, 40))
+                        .Criterion(Agent.CriterionName.AStar)
+                        .Criterion(Agent.CriterionName.AngleOfRotation, 0.2f)
+                        
+                        .NonlinearFunction(Agent.CriterionName.AngleOfRotation, new float[,] { { 0, 10 }, { 180, 0 } })//new float[,] { { -1, 10 }, { 60, 10 }, { 100, 10 }, { 120, 0 }, { 181, 0 } })
+                        .BorderValuesFlags(Agent.Border.CornerMin, 120),
+                        50);
                     MapCalculator.MapHelper.FinalPoints = res[^1].Item1;
                     MessageBox.Show("Рекурсивный путь построен.");
-                //}); // с готовыми данными ищем путь
+                }); // с готовыми данными ищем путь
             };
             numKHeight.ValueChanged += delegate
             {
