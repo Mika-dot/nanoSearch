@@ -75,7 +75,7 @@ namespace AgentSmith
 
             bool[] flag = new bool[aStarSearchList.Count];
             float sum = aStarSearchList.Sum(x => x.Item1);//.Where(t => t.Item2).Aggregate(0f, (acc, t) => acc + t.Item1);
-            for (int i = 0; i < aStarSearchList.Count; i++) flag[i] = aStarSearchList[0].Item2;
+            for (int i = 0; i < aStarSearchList.Count; i++) flag[i] = aStarSearchList[i].Item2;
 
 
             return (sum, flag);
@@ -145,7 +145,7 @@ namespace AgentSmith
         /// <returns></returns>
         private (float, bool) AngleOfRotation(Point historyPosition, PointZ cordinat)
         {
-            return Range(Configuration.CornerMin, 0, AnglePoint(historyPosition, cordinat.My, cordinat.Your));
+            return Range(Configuration.CornerMin, 181, AnglePoint(historyPosition, cordinat.My, cordinat.Your));
         }
     }
 }

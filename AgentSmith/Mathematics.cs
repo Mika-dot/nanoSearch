@@ -90,6 +90,24 @@ namespace AgentSmith
             return yval;
         }
 
+        float KaschInterp(float[] x, float[] y, int n, float t)
+        {
+            float result = 0;
+            for (int i = 0; i < n; i++)
+            {
+                float lambda = 1;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i != j)
+                    {
+                        lambda *= (t - x[j]) / (x[i] - x[j]);
+                    }
+                }
+                result += y[i] * lambda / (t - x[i]);
+            }
+            return result;
+        }
+
         public float FunctionEvaluation(float value, float[,] method, float step = 1)
         {
             float[] X = new float[method.GetLength(0)];
@@ -102,6 +120,7 @@ namespace AgentSmith
 
             //return Newton(value, method.GetLength(0), X, Y, step);
             return LagrangeInterpolation(X, Y, value);
+            //return KaschInterp(X, Y, X.Length, value);
         }
 
         /// <summary>
