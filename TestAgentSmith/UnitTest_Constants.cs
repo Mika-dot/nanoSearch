@@ -73,7 +73,7 @@ namespace UnitTest_Constants
             Configuration.CornerMin = expected_float;
             Configuration.End = point;
             Configuration.Size = size_core;
-            Configuration.Map = new int[map_size, map_size];
+            Configuration.Map = new int?[map_size, map_size];
 
             //Проверка
             Assert.AreEqual(expected_int, Configuration.AltitudeMin);
