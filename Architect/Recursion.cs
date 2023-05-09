@@ -23,29 +23,6 @@ namespace Architect
             List<Point> Result = new List<Point>();
             List<(Point, bool[])> BrokenList = new List<(Point, bool[])>();
 
-
-            var X = Configuration.Map.GetLength(0);
-            var Y = Configuration.Map.GetLength(1);
-            var newbp = new Bitmap(X, Y);
-
-            int max = Configuration.Map.Cast<int?>().Where(x => x.HasValue).Select(x => x.Value).Max();
-            for (int i2 = 0; i2 < X; i2++)
-                for (int j = 0; j < Y; j++)
-                {
-                    if (!Configuration.Map[i2, j].HasValue)
-                    {
-                        newbp.SetPixel(i2, j, Color.FromArgb(255, 0, 0)); // Помечаем белым
-                    }
-                    else
-                    {
-                        int rgb = max == 0 ? 0 : (int)(255f * Configuration.Map[i2, j] / max);
-                        newbp.SetPixel(i2, j, Color.FromArgb(rgb, rgb, rgb));
-                    }
-                }
-            newbp.SetPixel(Start.X, Start.Y, Color.FromArgb(255, 0, 255));
-            newbp.SetPixel(Configuration.End.X, Configuration.End.Y, Color.FromArgb(255, 0, 255));
-
-            int counter = 10;
             while (curr != Configuration.End)
             {
                 var res_here = Smith.AgentActions(curr, Start);
@@ -59,21 +36,13 @@ namespace Architect
                     Configuration.Map[curr.X, curr.Y] = null;
                     BrokenList.Add((curr, res_here.Value.Item2));
                 }
-
-                newbp.SetPixel(curr.X, curr.Y, Color.FromArgb(255, 0, 0));
-                //counter--;
-                //if (counter == 0)
-                //{
-                //    newbp.Save("res.png", System.Drawing.Imaging.ImageFormat.Png);
-                //    counter = 10;
-                //}
             }
             return (Result, BrokenList);
         }
 
         public static List<(List<Point>, List<(Point, bool[])>)> Recursions(Agent Smith, int longs = 100)
         {
-            List<(List<Point>, List<(Point, bool[])>)> AllPaths = new();       
+            List<(List<Point>, List<(Point, bool[])>)> AllPaths = new();
             for(int i = 0; i < longs; i++) 
             {
                 Console.WriteLine($"stage {i + 1} / {longs}");
