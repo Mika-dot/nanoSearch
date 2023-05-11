@@ -16,7 +16,7 @@ namespace TestA_Star
         public void TestsAStar_hz()
         {
             // Переменые
-            int[,] MAP = new int[128, 128];
+            int?[,] MAP = new int?[128, 128];
 
             //var bmp = new System.Drawing.Bitmap("TestA-Star\\Map_1.bmp", true);//Берем изображение шума из ресурсов
             //float maxHeightMap = 5f;
@@ -31,7 +31,7 @@ namespace TestA_Star
                 Configuration.End = new Point(r.Next(1, 127), r.Next(1, 127));
                 var start = new Point(r.Next(1, 127), r.Next(1, 127));
                 var grid = new SquareGrid(128, 128);
-                var astar = new AStar(grid, start, Configuration.End, ref MAP);
+                var astar = new AStar(grid, start, Configuration.End, ref MAP, Configuration.Size);
             }
 
             
