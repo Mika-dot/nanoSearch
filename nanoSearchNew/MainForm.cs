@@ -82,15 +82,7 @@ namespace nanoSearchNew
             {
                 Task.Run(() =>
                 {
-                    Configuration.Size = 1;
-                    var res = Architect.Recursion.Recursions(
-                        new Agent(MapCalculator.MapHelper.newPoints, new Point(0, 150), new Point(120, 40))
-                        .Criterion(Agent.CriterionName.AStar)
-                        .Criterion(Agent.CriterionName.AngleOfRotation, 0.2f)
-                        
-                        .NonlinearFunction(Agent.CriterionName.AngleOfRotation, new float[,] { { 0, 10 }, { 180, 0 } })//new float[,] { { -1, 10 }, { 60, 10 }, { 100, 10 }, { 120, 0 }, { 181, 0 } })
-                        .BorderValuesFlags(Agent.Border.CornerMin, 120),
-                        50);
+                    var res = Architect.Recursion.Recursions(new Agent(MapCalculator.MapHelper.newPoints, new Point(0, 150), new Point(120, 40)), 50);
                     MapCalculator.MapHelper.FinalPoints = res[^1].Item1;
                     MessageBox.Show("Рекурсивный путь построен.");
                 }); // с готовыми данными ищем путь
@@ -150,6 +142,114 @@ namespace nanoSearchNew
                 Coefficient.AngleOfRotation = (float)numericUpDown10.Value;
             };
 
+            numericUpDown15.Value = (decimal)Configuration.AltitudeMin;
+            numericUpDown15.ValueChanged += delegate
+            {
+                Configuration.AltitudeMin = (float)numericUpDown15.Value;
+            };
+
+            numericUpDown14.Value = (decimal)Configuration.AltitudeMax;
+            numericUpDown14.ValueChanged += delegate
+            {
+                Configuration.AltitudeMax = (float)numericUpDown14.Value;
+            };
+
+            numericUpDown13.Value = (decimal)Configuration.CornerHeightsMin;
+            numericUpDown13.ValueChanged += delegate
+            {
+                Configuration.CornerHeightsMin = (float)numericUpDown13.Value;
+            };
+
+            numericUpDown12.Value = (decimal)Configuration.CornerHeightsMax;
+            numericUpDown12.ValueChanged += delegate
+            {
+                Configuration.CornerHeightsMax = (float)numericUpDown12.Value;
+            };
+
+            numericUpDown11.Value = (decimal)Configuration.LengthMax;
+            numericUpDown11.ValueChanged += delegate
+            {
+                Configuration.LengthMax = (float)numericUpDown11.Value;
+            };
+
+            numericUpDown16.Value = (decimal)Configuration.CornerMin;
+            numericUpDown16.ValueChanged += delegate
+            {
+                Configuration.CornerMin = (float)numericUpDown16.Value;
+            };
+
+
+            numericUpDown17.Value = Configuration.Size;
+            numericUpDown17.ValueChanged += delegate
+            {
+                Configuration.Size = (int)numericUpDown17.Value;
+            };
+
+            textBox1.Text = string.Join(", ", calculationFormula.AStarSearch.Cast<float>());
+            textBox2.Text = string.Join(", ", calculationFormula.Height.Cast<float>());
+            textBox3.Text = string.Join(", ", calculationFormula.Corner.Cast<float>());
+            textBox4.Text = string.Join(", ", calculationFormula.Length.Cast<float>());
+            textBox5.Text = string.Join(", ", calculationFormula.AngleOfRotation.Cast<float>());
+
+            button4.Click += delegate
+            {
+                try
+                {
+                    ParseThis(textBox1.Text, ref calculationFormula.AStarSearch);
+                }
+                catch
+                {
+                    MessageBox.Show("1 AStar плох.");
+                }
+                try
+                {
+                    ParseThis(textBox2.Text, ref calculationFormula.Height);
+                }
+                catch
+                {
+                    MessageBox.Show("2 Height плох.");
+                }
+                try
+                {
+                    ParseThis(textBox3.Text, ref calculationFormula.Corner);
+                }
+                catch
+                {
+                    MessageBox.Show("3 Corner плох.");
+                }
+                try
+                {
+                    ParseThis(textBox4.Text, ref calculationFormula.Length);
+                }
+                catch
+                {
+                    MessageBox.Show("4 Length плох.");
+                }
+                try
+                {
+                    ParseThis(textBox5.Text, ref calculationFormula.AngleOfRotation);
+                }
+                catch
+                {
+                    MessageBox.Show("5 AngleOfRotation плох.");
+                }
+            };
+
+
+            void ParseThis(string what, ref float[,] where)
+            {
+                if (what.Length > 0)
+                {
+                    var SS = what.Replace(" ", "").Split(',');
+                    var pointsA = new float[SS.Length / 2, 2];
+                    for (int i = 0; i < SS.Length; i += 2)
+                    {
+                        pointsA[i / 2, 0] = float.Parse(SS[i]);
+                        pointsA[i / 2, 1] = float.Parse(SS[i + 1]);
+                    }
+                    where = pointsA; // на случай кривого парсинга оставляем это на конец
+                }
+            }
 
             //MapCalculator.MapHelper.CalculatePathOnMap(new Point(0, 150), new Point(120, 40)); // с готовыми данными ищем путь
         }

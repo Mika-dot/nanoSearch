@@ -28,7 +28,6 @@ namespace MapCalculator
         public static int MaxY = 0;
         public static int[,] points;//массив высот, 
         public static int?[,] newPoints;//массив высот,
-        public static HashSet<Point> ExcludedPoints = new HashSet<Point>();
         public static List<Point> FinalPoints = new List<Point>();
         public static int maxHeightMap = 100;//максимальная высота гор с 
 
@@ -37,8 +36,6 @@ namespace MapCalculator
 
         public static void CalculateEverything()
         {
-            ExcludedPoints.Clear();
-
             newPoints = new int?[xC, zC];
             for (int i = 0; i < xC; i++)
                 for (int j = 0; j < zC; j++)
@@ -493,7 +490,7 @@ namespace MapCalculator
         {
 
             var newbp = new Bitmap(xC, zC);
-            int max = newPoints.Cast<int>().Max();
+            int max = newPoints.Cast<int?>().Where(x => x.HasValue).Select(x => x.Value).Max();
             for (int i = 0; i < xC; i++)
                 for (int j = 0; j < zC; j++)
                 {
@@ -502,10 +499,7 @@ namespace MapCalculator
                 }
 
             var curr = start;
-            //curr.Y++;
-            Configuration.Size = 1;
-            //Configuration.End = end;// end = new Point(80, 50);
-            var agent = new Agent(newPoints, start, end).Criterion(Agent.CriterionName.AStar); // Создаём агента
+            var agent = new Agent(newPoints, start, end); // Создаём агента
             FinalPoints.Clear();
             FinalPoints.Add(start);
             FinalPoints.Add(curr);
