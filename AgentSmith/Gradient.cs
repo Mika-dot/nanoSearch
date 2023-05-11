@@ -90,18 +90,18 @@ namespace AgentSmith
         private (float, bool) AStarSearch(Point start)
         {
             float result = 0;
-            List<Point> FinalPoints = new List<Point>();
-            AStar startInstance = new AStar(Configuration.grid, start, Configuration.End, ref Configuration._map);
+            //List<Point> FinalPoints = new List<Point>();
+            AStar startInstance = new AStar(Configuration.grid, start, Configuration.End, ref Configuration._map, Configuration.Size);
             Point current = Configuration.End;
             while (current != start)
             {
-                FinalPoints.Add(current);
+                //FinalPoints.Add(current);
                 var past = startInstance.cameFrom[current];
                 result += (float)AStar.Heuristic(current, past);
                 current = past;
             }
 
-            FinalPoints.Add(current);
+            //FinalPoints.Add(current);
             return (result, false);
         }
 
