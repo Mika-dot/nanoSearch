@@ -5,11 +5,6 @@ namespace A_Star
 {
     public class SquareGrid
     {
-        // Примечания по реализации: для удобства я сделал поля публичными,
-        // но в реальном проекте, возможно, стоит следовать стандартному
-        // стилю и сделать их скрытыми.
-
-
         public int width, height;
         public SquareGrid(int width, int height)
         {
